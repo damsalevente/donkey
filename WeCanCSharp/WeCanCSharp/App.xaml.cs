@@ -28,6 +28,10 @@ namespace WeCanCSharp
         /// </summary>
         public App()
         {
+            /* Create the highest computing layer of the application */
+            MyApplication myApplication = new MyApplication();
+
+
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }

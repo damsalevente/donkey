@@ -8,7 +8,51 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <!-- TODO: This is only a sample code, configuration, about tab, etc. is needed... -->
+    <Grid HorizontalAlignment="Right" Width="1280" Height="720" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="13*"/>
+            <RowDefinition Height="347*"/>
+        </Grid.RowDefinitions>
+        <MenuBar Background="Gray" Margin="10,0,-10,680" Grid.RowSpan="2">
+            <MenuBarItem Title="File">
+                <MenuFlyoutSubItem Text="New">
+                    <MenuFlyoutItem Text="Plain Text Document"/>
+                    <MenuFlyoutItem Text="Rich Text Document"/>
+                    <MenuFlyoutItem Text="Other Formats..."/>
+                </MenuFlyoutSubItem>
+                <MenuFlyoutItem Text="Open..."/>
+                <MenuFlyoutItem Text="Save"/>
+                <MenuFlyoutSeparator />
+                <MenuFlyoutItem Text="Exit"/>
+            </MenuBarItem>
 
+        </MenuBar>
+
+
+        <!-- TODO: Create the proper position and size and color -->
+        <!-- The lower two ellipses represents the rear wheel, the upper two represents the front wheel -->
+        <!-- Data binding could be done on the upper two wheels' rotation depending on the wheel state -->
+        <Ellipse HorizontalAlignment="Left" Height="144" Margin="953,32,0,0" Stroke="Black" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+            <Ellipse.RenderTransform>
+                <CompositeTransform Rotation="0"/>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+        <Ellipse HorizontalAlignment="Left" Height="144" Margin="1127,32,0,0" Stroke="Black" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+            <Ellipse.RenderTransform>
+                <CompositeTransform Rotation="0
+                                    "/>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+        <Ellipse HorizontalAlignment="Left" Height="144" Margin="953,414,0,0" Stroke="Black" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+            <Ellipse.RenderTransform>
+                <CompositeTransform Rotation="0"/>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+        <Ellipse HorizontalAlignment="Left" Height="144" Margin="1127,414,0,0" Stroke="Black" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+            <Ellipse.RenderTransform>
+                <CompositeTransform Rotation="0"/>
+            </Ellipse.RenderTransform>
+        </Ellipse>
     </Grid>
 </Page>
