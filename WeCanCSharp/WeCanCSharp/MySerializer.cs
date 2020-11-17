@@ -12,26 +12,37 @@ namespace WeCanCSharp
 {
     class MySerializer
     {
-        public void mySerializerRoutine(MyCarConfiguration myCarConfiguration)
+        XmlSerializer xmlSerializer = new XmlSerializer(typeof(MyCarConfiguration));
+
+        public void mySerializerRoutine(MyCarConfiguration myCarConfiguration, string filepath)
         {
+            using (FileStream stream = new FileStream(filepath, FileMode.Create, FileAccess.Write))
+            {
+                var writer = new StreamWriter(stream);
 
+                StreamWriter sw = new StreamWriter(stream);
 
-            //XmlSerializer xmlSerializer = new XmlSerializer();
-            //const string xmlFilename = "MyConfiguration.xml";
-            
-
-
+                xmlSerializer.Serialize(sw, myCarConfiguration);
+            }
         }
-        public void myDeserializerRoutine(string maximumThrottleInputText, string maximumLeftSteeringValue, string maximumRightSteeringValue)
+
+        public MyCarConfiguration myDeserializerRoutine(string filepath)
         {
-            /* TODO: This should not be here...*/
-            List<string> myConfigList = new List<string>();
+            MyCarConfiguration myCarConfiguration;
 
-            myConfigList.Add(maximumThrottleInputText);
-            myConfigList.Add(maximumLeftSteeringValue);
-            myConfigList.Add(maximumRightSteeringValue);
+            try
+            {
+                using (FileStream stream = new FileStream(filepath, FileMode.Open, FileAccess.Read))
+                {
+                    myCarConfiguration = (MyCarConfiguration)xmlSerializer.Deserialize(stream);
+                }
+            }
+            catch
+            {
+                myCarConfiguration = null;
+            }
 
-
+            return myCarConfiguration;
         }
     }
 }

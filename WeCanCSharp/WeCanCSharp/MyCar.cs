@@ -9,15 +9,13 @@ namespace WeCanCSharp
     public class MyCar
     {
         /* MyCar configuration */
-        public MyCarConfiguration myCarConfiguration = new MyCarConfiguration();
+        public MyCarConfiguration myCarConfiguration;
         /* Input data */
         public MyInputData myInputData = new MyInputData();
         
-        public MyCar(int maxThrottle, int maxLeftSteeringPWM, int maxRightSteeringPWM)
+        public MyCar(MyCarConfiguration myCarConfiguration)
         {
-            this.myCarConfiguration.maxThrottle = maxThrottle;
-            this.myCarConfiguration.maxLeftSteeringPWM = maxLeftSteeringPWM;
-            this.myCarConfiguration.maxRightSteeringPWM = maxRightSteeringPWM;
+            this.myCarConfiguration = myCarConfiguration;
         }
 
         public MyCarConfiguration getMyCarConfiguration()

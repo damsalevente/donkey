@@ -36,8 +36,13 @@ namespace WeCanCSharp
         /// </summary>
         public App()
         {
-            /* TODO: replace the 0s with the .xml value. */
-            myCar = new MyCar(0, 0, 0);
+            /* TODO: Filepath is used in this, and in about page. This shall be reduced to one place. */
+            string filepath = @"e:\config.xml";
+
+            /* Get the configuration from .xml if that is possible, if not, initialize with 0s. */
+            MyCarConfiguration myCarConfiguration = new MySerializer().myDeserializerRoutine(filepath);
+            if (myCarConfiguration == null) myCarConfiguration = new MyCarConfiguration();
+            myCar = new MyCar(myCarConfiguration);
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;

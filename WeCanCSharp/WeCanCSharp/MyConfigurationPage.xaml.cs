@@ -37,8 +37,14 @@ namespace WeCanCSharp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            /* TODO: XML-be kiírás */
             MySerializer mySerializer = new MySerializer();
+
+            /* This is necessary for me beacuse my corporate computer does not have write access on the C drive... */
+            string filepath = @"e:\config.xml";
+
+            mySerializer.mySerializerRoutine(myCar.myCarConfiguration, filepath);
+
+            mySerializer.myDeserializerRoutine(filepath);
         }
 
         /* Get the myCar data model. */
