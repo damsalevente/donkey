@@ -25,6 +25,10 @@ namespace WeCanCSharp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        MyCar myCar;
+
+        MyViewCreator myViewCreator = new MyViewCreator();
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -34,23 +38,27 @@ namespace WeCanCSharp
         {
             MyAboutPage myAboutPage = new MyAboutPage();
 
-            MyViewCreator myViewCreator = new MyViewCreator();
-
-            myViewCreator.createNewView(myAboutPage);
+            myViewCreator.createNewView(myAboutPage, myCar);
         }
 
         private void configuration_Click(object sender, RoutedEventArgs e)
         {
             MyConfigurationPage myConfigurationPage = new MyConfigurationPage();
 
-            MyViewCreator myViewCreator = new MyViewCreator();
 
-            myViewCreator.createNewView(myConfigurationPage);
+            myViewCreator.createNewView(myConfigurationPage, myCar);
         }
 
         private void exit_Click(object sender, RoutedEventArgs e)
         {
             CoreApplication.Exit();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            this.myCar = (MyCar)e.Parameter;
+
+            base.OnNavigatedTo(e);
         }
     }
 }

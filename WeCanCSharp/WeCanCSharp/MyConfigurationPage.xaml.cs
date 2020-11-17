@@ -22,6 +22,8 @@ namespace WeCanCSharp
     /// </summary>
     public sealed partial class MyConfigurationPage : Page
     {
+        public MyCar myCar;
+
         public MyConfigurationPage()
         {
             this.InitializeComponent();
@@ -37,8 +39,14 @@ namespace WeCanCSharp
         {
             /* TODO: XML-be kiírás */
             MySerializer mySerializer = new MySerializer();
+        }
 
-            mySerializer.mySerializerRoutine(maximumThrottleInputText.Text, maximumLeftSteeringValue.Text, maximumRightSteeringValue.Text);
+        /* Get the myCar data model. */
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            this.myCar = (MyCar)e.Parameter;
+
+            base.OnNavigatedTo(e);
         }
     }
 }

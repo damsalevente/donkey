@@ -9,10 +9,11 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="426" Width="486">
 
     <Grid>
-        <!-- TODO -->
-        <TextBox x:Name="maximumThrottleInputText" HorizontalAlignment="Left" Margin="224,10,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBox_OnBeforeTextChanging"/>
-        <TextBox x:Name="maximumLeftSteeringValue" HorizontalAlignment="Left" Margin="224,66,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBox_OnBeforeTextChanging"/>
-        <TextBox x:Name="maximumRightSteeringValue" HorizontalAlignment="Left" Margin="224,122,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBox_OnBeforeTextChanging"/>
+        <!-- DONE: DataBinding -->
+        <!-- TODO: Save button writes the data to .xml. -->
+        <TextBox x:Name="maximumThrottleInputText" HorizontalAlignment="Left" Margin="224,10,0,0" Text="{x:Bind myCar.myCarConfiguration.maxThrottle, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBox_OnBeforeTextChanging"/>
+        <TextBox x:Name="maximumLeftSteeringValue" HorizontalAlignment="Left" Margin="224,66,0,0" Text="{x:Bind myCar.myCarConfiguration.maxLeftSteeringPWM, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBox_OnBeforeTextChanging"/>
+        <TextBox x:Name="maximumRightSteeringValue" HorizontalAlignment="Left" Margin="224,122,0,0" Text="{x:Bind myCar.myCarConfiguration.maxRightSteeringPWM, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBox_OnBeforeTextChanging"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" Text="Maximum throttle" TextWrapping="Wrap" VerticalAlignment="Top" Height="58" Width="205"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,66,0,0" Text="Maximum left steering value" TextWrapping="Wrap" VerticalAlignment="Top" Height="58" Width="205"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,122,0,0" Text="Maximum right steering value" TextWrapping="Wrap" VerticalAlignment="Top" Height="58" Width="205"/>

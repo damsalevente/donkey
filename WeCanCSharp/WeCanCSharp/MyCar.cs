@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace WeCanCSharp
 {
-    class MyCar
+    public class MyCar
     {
         /* MyCar configuration */
-        private MyCarConfiguration myCarConfiguration = new MyCarConfiguration();
-
+        public MyCarConfiguration myCarConfiguration = new MyCarConfiguration();
         /* Input data */
         public MyInputData myInputData = new MyInputData();
         
@@ -20,16 +19,26 @@ namespace WeCanCSharp
             this.myCarConfiguration.maxLeftSteeringPWM = maxLeftSteeringPWM;
             this.myCarConfiguration.maxRightSteeringPWM = maxRightSteeringPWM;
         }
+
+        public MyCarConfiguration getMyCarConfiguration()
+        {
+            return myCarConfiguration;
+        }
+
+        public void setMyCarConfiguration(MyCarConfiguration myCarConfiguration)
+        {
+            this.myCarConfiguration = myCarConfiguration;
+        }
     }
 
-    class MyCarConfiguration
+    public class MyCarConfiguration
     {
         public int maxThrottle;
         public int maxLeftSteeringPWM;
         public int maxRightSteeringPWM;
     }
 
-    class MyInputData
+    public class MyInputData
     {
         public int motorVoltage { set; get; }
         public int servoPosition { set; get; }

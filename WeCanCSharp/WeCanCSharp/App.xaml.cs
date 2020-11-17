@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Threading.Tasks;
 
 namespace WeCanCSharp
 {
@@ -22,18 +23,45 @@ namespace WeCanCSharp
     /// </summary>
     sealed partial class App : Application
     {
+        /* The data model */
+        MyCar myCar;
+        /* TODO: I think this will be refactored. */
+        MyBluetoothHandler myBluetoothHandler = new MyBluetoothHandler();
+        /* TODO: I think this will be refactored. */
+        MyBluetoothConverter myBluetoothConverter = new MyBluetoothConverter();
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         public App()
         {
-            /* Create the highest computing layer of the application */
-            MyApplication myApplication = new MyApplication();
-
+            /* TODO: replace the 0s with the .xml value. */
+            myCar = new MyCar(0, 0, 0);
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            /* TODO: This is not so nice here... The refresh rate also needs to come from settings.xml */
+            /* Start the cyclic refresh */
+            cyclicRefreshData(500);
+        }
+
+        /* This function is an infinite loop which runs with refreshRate ms */
+        async private void cyclicRefreshData(int refreshRate)
+        {
+            /* TODO: This works but not so nice... */
+            while (true)
+            {
+                if (myBluetoothHandler.isBluetoothConnected)
+                {
+                    myBluetoothHandler.requestData();
+
+                    myCar.myInputData = myBluetoothConverter.getDataFromBluetoothMessage(myBluetoothHandler.receiveData());
+                }
+
+                await Task.Delay(refreshRate);
+            }
         }
 
         /// <summary>
@@ -70,7 +98,8 @@ namespace WeCanCSharp
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    /* Passing myCar object to mainpage */
+                    rootFrame.Navigate(typeof(MainPage), myCar);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();

@@ -34,12 +34,12 @@
         <!-- TODO: Create the proper position and size and color -->
         <!-- The lower two ellipses represents the rear wheel, the upper two represents the front wheel -->
         <!-- Data binding could be done on the upper two wheels' rotation depending on the wheel state -->
-        <Ellipse HorizontalAlignment="Left" Height="144" Margin="914,25,0,0" Stroke="Black" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" Grid.Row="2" Grid.Column="1">
+        <Ellipse HorizontalAlignment="Left" Height="144" Margin="914,97,0,0" Stroke="Black" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" Grid.Row="2" Grid.Column="1">
             <Ellipse.RenderTransform>
                 <CompositeTransform Rotation="0"/>
             </Ellipse.RenderTransform>
         </Ellipse>
-        <Ellipse HorizontalAlignment="Left" Height="144" Margin="1088,25,0,0" Stroke="Black" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" Grid.Row="2" Grid.Column="1">
+        <Ellipse HorizontalAlignment="Left" Height="144" Margin="1088,97,0,0" Stroke="Black" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" Grid.Row="2" Grid.Column="1">
             <Ellipse.RenderTransform>
                 <CompositeTransform Rotation="0
                                     "/>

@@ -122,7 +122,6 @@
     <Compile Include="MyAboutPage.xaml.cs">
       <DependentUpon>MyAboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MyApplication.cs" />
     <Compile Include="MyBluetoothConverter.cs" />
     <Compile Include="MyBluetoothHandler.cs" />
     <Compile Include="MyCar.cs" />
