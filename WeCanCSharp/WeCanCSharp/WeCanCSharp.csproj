@@ -119,6 +119,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyAboutPage.xaml.cs">
+      <DependentUpon>MyAboutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyApplication.cs" />
     <Compile Include="MyBluetoothConverter.cs" />
     <Compile Include="MyBluetoothHandler.cs" />
@@ -126,7 +129,12 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyConfigurationPage.xaml.cs">
+      <DependentUpon>MyConfigurationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyViewCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MySerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -151,6 +159,14 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MyAboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyConfigurationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

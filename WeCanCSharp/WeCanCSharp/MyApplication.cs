@@ -22,7 +22,7 @@ namespace WeCanCSharp
 
             /* TODO: This is not so nice here... The refresh rate also needs to come from settings.xml */
             /* Start the cyclic refresh */
-            cyclicRefreshData(2000);
+            cyclicRefreshData(500);
         }
 
         /* This function is an infinite loop which runs with refreshRate ms */

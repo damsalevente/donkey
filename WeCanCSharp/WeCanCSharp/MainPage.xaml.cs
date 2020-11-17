@@ -12,6 +12,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.ViewManagement;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -25,6 +28,29 @@ namespace WeCanCSharp
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        private void about_Click(object sender, RoutedEventArgs e)
+        {
+            MyAboutPage myAboutPage = new MyAboutPage();
+
+            MyViewCreator myViewCreator = new MyViewCreator();
+
+            myViewCreator.createNewView(myAboutPage);
+        }
+
+        private void configuration_Click(object sender, RoutedEventArgs e)
+        {
+            MyConfigurationPage myConfigurationPage = new MyConfigurationPage();
+
+            MyViewCreator myViewCreator = new MyViewCreator();
+
+            myViewCreator.createNewView(myConfigurationPage);
+        }
+
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+            CoreApplication.Exit();
         }
     }
 }

@@ -1,0 +1,21 @@
+﻿<Page
+    x:Class="WeCanCSharp.MyConfigurationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WeCanCSharp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="426" Width="486">
+
+    <Grid>
+        <!-- TODO -->
+        <TextBox x:Name="maximumThrottleInputText" HorizontalAlignment="Left" Margin="224,10,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBox_OnBeforeTextChanging"/>
+        <TextBox x:Name="maximumLeftSteeringValue" HorizontalAlignment="Left" Margin="224,66,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBox_OnBeforeTextChanging"/>
+        <TextBox x:Name="maximumRightSteeringValue" HorizontalAlignment="Left" Margin="224,122,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBox_OnBeforeTextChanging"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" Text="Maximum throttle" TextWrapping="Wrap" VerticalAlignment="Top" Height="58" Width="205"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,66,0,0" Text="Maximum left steering value" TextWrapping="Wrap" VerticalAlignment="Top" Height="58" Width="205"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,122,0,0" Text="Maximum right steering value" TextWrapping="Wrap" VerticalAlignment="Top" Height="58" Width="205"/>
+        <Button Content="Save" Margin="0,213,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="Button_Click"/>
+    </Grid>
+</Page>
