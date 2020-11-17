@@ -13,7 +13,10 @@ namespace WeCanCSharp
 {
     class MyViewCreator
     {
-        public async void createNewView(Page input, object Param)
+        /* This function creates a new standalone view. 
+         * input - decides which page derived class will be created.
+         * param - an object which can be sent to the created page as parameter. */
+        public async void createNewView(Page input, object param)
         {
             /* TODO: This is a total copy. Review is needed. */
             CoreApplicationView newView = CoreApplication.CreateNewView();
@@ -23,7 +26,7 @@ namespace WeCanCSharp
             await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Frame frame = new Frame();
-                frame.Navigate(input.GetType(), Param);
+                frame.Navigate(input.GetType(), param);
                 Window.Current.Content = frame;
                 // You have to activate the window in order to show it later.
                 Window.Current.Activate();

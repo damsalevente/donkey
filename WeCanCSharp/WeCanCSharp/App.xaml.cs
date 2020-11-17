@@ -24,7 +24,7 @@ namespace WeCanCSharp
     sealed partial class App : Application
     {
         /* The data model */
-        MyCar myCar;
+        readonly MyCar myCar;
         /* TODO: I think this will be refactored. */
         MyBluetoothHandler myBluetoothHandler = new MyBluetoothHandler();
         /* TODO: I think this will be refactored. */
