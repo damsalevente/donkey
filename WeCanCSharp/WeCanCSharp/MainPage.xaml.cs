@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.ViewManagement;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
+using OxyPlot;
+using OxyPlot.Axes;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -29,9 +31,24 @@ namespace WeCanCSharp
 
         MyViewCreator myViewCreator = new MyViewCreator();
 
+        MyPlotModelCreator myPlotModelCreator = new MyPlotModelCreator();
+
         public MainPage()
         {
             this.InitializeComponent();
+
+            setMyPlotModels();
+        }
+
+        private void setMyPlotModels()
+        {
+            myLidarValuePlotView.Model = myPlotModelCreator.createNewPlotModel();
+
+            myMotorVoltagePlotView.Model = myPlotModelCreator.createNewPlotModel();
+
+            myServoPositionPlotView.Model = myPlotModelCreator.createNewPlotModel();
+
+            mySpeedValuePlotView.Model = myPlotModelCreator.createNewPlotModel();
         }
 
         private void about_Click(object sender, RoutedEventArgs e)
