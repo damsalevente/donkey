@@ -18,7 +18,6 @@ namespace WeCanCSharp
          * param - an object which can be sent to the created page as parameter. */
         public async void createNewView(Page input, object param)
         {
-            /* TODO: This is a total copy. Review is needed. */
             CoreApplicationView newView = CoreApplication.CreateNewView();
             
             int newViewId = 0;
@@ -26,14 +25,17 @@ namespace WeCanCSharp
             await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Frame frame = new Frame();
+                
                 frame.Navigate(input.GetType(), param);
+                
                 Window.Current.Content = frame;
-                // You have to activate the window in order to show it later.
+
                 Window.Current.Activate();
 
                 newViewId = ApplicationView.GetForCurrentView().Id;
             });
-            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+
+            await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
         }
     }
 }

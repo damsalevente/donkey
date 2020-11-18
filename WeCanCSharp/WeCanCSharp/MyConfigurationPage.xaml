@@ -9,8 +9,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="426" Width="486">
 
     <Grid>
-        <!-- DONE: DataBinding -->
-        <!-- TODO: Save button writes the data to .xml. -->
         <TextBox x:Name="maximumThrottleInputText" HorizontalAlignment="Left" Margin="224,10,0,0" Text="{x:Bind myCar.myCarConfiguration.maxThrottle, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBox_OnBeforeTextChanging"/>
         <TextBox x:Name="maximumLeftSteeringValue" HorizontalAlignment="Left" Margin="224,66,0,0" Text="{x:Bind myCar.myCarConfiguration.maxLeftSteeringPWM, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBox_OnBeforeTextChanging"/>
         <TextBox x:Name="maximumRightSteeringValue" HorizontalAlignment="Left" Margin="224,122,0,0" Text="{x:Bind myCar.myCarConfiguration.maxRightSteeringPWM, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBox_OnBeforeTextChanging"/>
