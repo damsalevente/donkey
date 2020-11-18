@@ -6,54 +6,37 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="720" Width="1280
-    ">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Height="720" Width="1280">
 
-    <!-- TODO: This is only a sample code, configuration, about tab, etc. is needed... -->
-    <Grid HorizontalAlignment="Left" Width="1280" Height="720" VerticalAlignment="Top" Margin="0,0,0,0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="39*"/>
-            <ColumnDefinition Width="1229*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="26*"/>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="687*"/>
-        </Grid.RowDefinitions>
-        <MenuBar Background="Gray" Margin="0,0,-10,640" Grid.RowSpan="3" HorizontalAlignment="Right" Width="1280" Grid.ColumnSpan="2">
+    
+    <Grid Width="1280" Height="720" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0">
+        <MenuBar Background="Gray" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="1280" Height="40" Grid.RowSpan="3" Grid.ColumnSpan="2">
             <MenuBarItem Title="File">
                 <MenuFlyoutItem Text="Configuration" Click="configuration_Click"/>
                 <MenuFlyoutItem Text="About" Click="about_Click"/>
                 <MenuFlyoutSeparator />
                 <MenuFlyoutItem Text="Exit" Click="exit_Click"/>
             </MenuBarItem>
-
         </MenuBar>
 
-
-        <!-- TODO: Create the proper position and size and color -->
         <!-- The lower two ellipses represents the rear wheel, the upper two represents the front wheel -->
-        <!-- Data binding could be done on the upper two wheels' rotation depending on the wheel state -->
-        <Ellipse HorizontalAlignment="Left" Height="144" Margin="914,97,0,0" Stroke="Black" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" Grid.Row="2" Grid.Column="1">
-            <Ellipse.RenderTransform>
-                <CompositeTransform Rotation="0"/>
-            </Ellipse.RenderTransform>
-        </Ellipse>
-        <Ellipse HorizontalAlignment="Left" Height="144" Margin="1088,97,0,0" Stroke="Black" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" Grid.Row="2" Grid.Column="1">
-            <Ellipse.RenderTransform>
-                <CompositeTransform Rotation="0
-                                    "/>
-            </Ellipse.RenderTransform>
-        </Ellipse>
-        <Ellipse HorizontalAlignment="Left" Height="144" Margin="914,407,0,0" Stroke="Black" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" Grid.Row="2" Grid.Column="1">
-            <Ellipse.RenderTransform>
-                <CompositeTransform Rotation="0"/>
-            </Ellipse.RenderTransform>
-        </Ellipse>
-        <Ellipse HorizontalAlignment="Left" Height="144" Margin="1088,407,0,0" Stroke="Black" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" Grid.Row="2" Grid.Column="1">
-            <Ellipse.RenderTransform>
-                <CompositeTransform Rotation="0"/>
-            </Ellipse.RenderTransform>
-        </Ellipse>
+        <!-- TODO: Data binding could be done on the upper two wheels' rotation depending on the wheel state -->
+        <Canvas Width="280" Height="680" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1000,40,0,0">
+            <Ellipse Height="140" Width="40" Margin="50,20,0,0" Fill="Gray" Stroke="Black" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                <Ellipse.RenderTransform>
+                    <CompositeTransform Rotation="0"/>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <Ellipse Height="140" Width="40" Margin="190,20,0,0" Fill="Gray" Stroke="Black" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                <Ellipse.RenderTransform>
+                    <CompositeTransform Rotation="0"/>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <Ellipse Height="140" Width="40" Margin="50,520,0,0" Fill="#FFFF0000" Stroke="Black" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+            </Ellipse>
+            <Ellipse Height="140" Width="40" Margin="190,520,0,0" Fill="#FFFF0000" Stroke="Black" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+            </Ellipse>
+        </Canvas>
     </Grid>
 </Page>
