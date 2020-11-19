@@ -31,17 +31,17 @@ namespace WeCanCSharp
     public sealed partial class MainPage : Page
     {
         /* FunctionSeries for data storage. */
-        FunctionSeries lidarSensorFunctionSeries = new FunctionSeries();
-        FunctionSeries motorVoltageFunctionSeries = new FunctionSeries();
-        FunctionSeries servoPositionFunctionSeries = new FunctionSeries();
-        FunctionSeries speedValueFunctionSeries = new FunctionSeries();
+        readonly FunctionSeries lidarSensorFunctionSeries = new FunctionSeries();
+        readonly FunctionSeries motorVoltageFunctionSeries = new FunctionSeries();
+        readonly FunctionSeries servoPositionFunctionSeries = new FunctionSeries();
+        readonly FunctionSeries speedValueFunctionSeries = new FunctionSeries();
 
         /* The data model */
         MySimulation mySimulation;
 
-        MyViewCreator myViewCreator = new MyViewCreator();
+        private readonly MyViewCreator myViewCreator = new MyViewCreator();
 
-        MyPlotModelCreator myPlotModelCreator = new MyPlotModelCreator();
+        private readonly MyPlotModelCreator myPlotModelCreator = new MyPlotModelCreator();
 
         public MainPage()
         {
@@ -58,18 +58,11 @@ namespace WeCanCSharp
             servoPositionFunctionSeries.Points.Add(new DataPoint(mySimulation.myTime, mySimulation.myCar.myInputData.servoPosition));
             speedValueFunctionSeries.Points.Add(new DataPoint(mySimulation.myTime, mySimulation.myCar.myInputData.speedValue));
 
-            /* TODO: remove the comment, if the threading problem is fixed. */
-            //refreshPlot();
+            refreshPlot();
         }
 
         private void refreshPlot()
         {
-            /* Refresh te maximum time */
-            myLidarValuePlotView.Model.DefaultXAxis.Maximum = mySimulation.myTime;
-            myMotorVoltagePlotView.Model.DefaultXAxis.Maximum = mySimulation.myTime;
-            myServoPositionPlotView.Model.DefaultXAxis.Maximum = mySimulation.myTime;
-            mySpeedValuePlotView.Model.DefaultXAxis.Maximum = mySimulation.myTime;
-
             /* Refresh the plot */
             myLidarValuePlotView.InvalidatePlot(true);
             myMotorVoltagePlotView.InvalidatePlot(true);

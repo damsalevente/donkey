@@ -28,15 +28,16 @@ namespace WeCanCSharp
         public UInt64 myTime
         {
             get => this.time;
-            set 
+            set
             {
+                /* The order of these functions must not be changed, or the 0th point will be lost. */
+                OnPropertyChanging();
+
                 time = value;
-                // Call OnPropertyChanged whenever the property is updated
-                OnPropertyChanged();
             }
         }
 
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        protected void OnPropertyChanging([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }

@@ -48,9 +48,6 @@ namespace WeCanCSharp
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-
-            /* Start the cyclic refresh */
-            cyclicRefreshData(mySimulation.refreshRate);
         }
 
         /* This function is an infinite loop which runs with refreshRate ms */
@@ -58,6 +55,7 @@ namespace WeCanCSharp
         {
             while (true)
             {
+                /* TODO: Everything shall be in the if statement, since no update is needed, if no device is connected. */
                 if (myBluetoothHandler.isBluetoothConnected)
                 {
                     myBluetoothHandler.requestData();
@@ -65,9 +63,9 @@ namespace WeCanCSharp
                     mySimulation.myCar.myInputData = myBluetoothConverter.getDataFromBluetoothMessage(myBluetoothHandler.receiveData());
                 }
 
-                await Task.Delay(refreshRate);
-
                 mySimulation.myTime += (UInt64)mySimulation.refreshRate;
+
+                await Task.Delay(refreshRate);
             }
         }
 
@@ -111,6 +109,9 @@ namespace WeCanCSharp
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+
+            /* Start the cyclic refresh */
+            cyclicRefreshData(mySimulation.refreshRate);
         }
 
         /// <summary>
