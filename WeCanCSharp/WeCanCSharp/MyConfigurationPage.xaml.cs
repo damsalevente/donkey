@@ -22,7 +22,7 @@ namespace WeCanCSharp
     /// </summary>
     public sealed partial class MyConfigurationPage : Page
     {
-        public MyCar myCar;
+        public MySimulation mySimulation;
 
         public MyConfigurationPage()
         {
@@ -39,18 +39,20 @@ namespace WeCanCSharp
         {
             MySerializer mySerializer = new MySerializer();
 
-            /* This is necessary for me beacuse my corporate computer does not have write access on the C drive... */
-            string filepath = @"e:\config.xml";
+            /* Create the myConfiguration object, which will be serialized */
+            MyConfiguration myConfiguration = new MyConfiguration();
+            myConfiguration.myCarConfiguration = mySimulation.myCar.myCarConfiguration;
+            myConfiguration.refreshRate = mySimulation.refreshRate;
 
-            mySerializer.mySerializerRoutine(myCar.myCarConfiguration, filepath);
+            mySerializer.mySerializerRoutine(myConfiguration, Config.filepath);
 
-            mySerializer.myDeserializerRoutine(filepath);
+            mySerializer.myDeserializerRoutine(Config.filepath);
         }
 
-        /* Get the myCar data model. */
+        /* Get mySimulation data model. */
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.myCar = (MyCar)e.Parameter;
+            this.mySimulation = (MySimulation)e.Parameter;
 
             base.OnNavigatedTo(e);
         }

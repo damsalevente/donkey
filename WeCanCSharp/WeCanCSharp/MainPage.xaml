@@ -13,16 +13,16 @@
     
     <Grid Width="1280" Height="720" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0">
 
-        <oxyPlot:PlotView x:Name="myMotorVoltagePlotView" Width="480" Height="320" Margin="20,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <oxyPlot:PlotView x:Name="myMotorVoltagePlotView" Width="480" Height="300" Margin="20,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
         </oxyPlot:PlotView>
         
-        <oxyPlot:PlotView x:Name="myServoPositionPlotView" Width="480" Height="320" Margin="520,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <oxyPlot:PlotView x:Name="myServoPositionPlotView" Width="480" Height="300" Margin="520,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
         </oxyPlot:PlotView>
 
-        <oxyPlot:PlotView x:Name="myLidarValuePlotView" Width="480" Height="320" Margin="20,400,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <oxyPlot:PlotView x:Name="myLidarValuePlotView" Width="480" Height="300" Margin="20,400,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
         </oxyPlot:PlotView>
 
-        <oxyPlot:PlotView x:Name="mySpeedValuePlotView" Width="480" Height="320" Margin="520,400,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <oxyPlot:PlotView x:Name="mySpeedValuePlotView" Width="480" Height="300" Margin="520,400,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
         </oxyPlot:PlotView>
 
         <MenuBar Background="Gray" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="1280" Height="40" Grid.RowSpan="3" Grid.ColumnSpan="2">

@@ -23,8 +23,9 @@ namespace WeCanCSharp
     /// </summary>
     sealed partial class App : Application
     {
-        /* The data model */
-        readonly MyCar myCar;
+        /* The simulation */
+        readonly MySimulation mySimulation;
+        
         /* TODO: I think this will be refactored. */
         MyBluetoothHandler myBluetoothHandler = new MyBluetoothHandler();
         /* TODO: I think this will be refactored. */
@@ -36,36 +37,37 @@ namespace WeCanCSharp
         /// </summary>
         public App()
         {
-            /* TODO: Filepath is used in this, and in about page. This shall be reduced to one place. */
-            string filepath = @"e:\config.xml";
+            /* Get the configuration from .xml */
+            MyConfiguration myConfiguration = new MySerializer().myDeserializerRoutine(Config.filepath);
+            /* Check if the configuration exsists, if not, create default settings */
+            MyCarConfiguration myCarConfiguration = (myConfiguration == null) ? new MyCarConfiguration() : myConfiguration.myCarConfiguration;
+            int refreshRate = (myConfiguration == null) ? Config.defaultRefreshRate : myConfiguration.refreshRate;
 
-            /* Get the configuration from .xml if that is possible, if not, initialize with 0s. */
-            MyCarConfiguration myCarConfiguration = new MySerializer().myDeserializerRoutine(filepath);
-            if (myCarConfiguration == null) myCarConfiguration = new MyCarConfiguration();
-            myCar = new MyCar(myCarConfiguration);
+            /* Create the Data model */
+            mySimulation = new MySimulation(new MyCar(myCarConfiguration), refreshRate);
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
-            /* TODO: This is not so nice here... The refresh rate also needs to come from settings.xml */
             /* Start the cyclic refresh */
-            cyclicRefreshData(500);
+            cyclicRefreshData(mySimulation.refreshRate);
         }
 
         /* This function is an infinite loop which runs with refreshRate ms */
         async private void cyclicRefreshData(int refreshRate)
         {
-            /* TODO: This works but not so nice... */
             while (true)
             {
                 if (myBluetoothHandler.isBluetoothConnected)
                 {
                     myBluetoothHandler.requestData();
 
-                    myCar.myInputData = myBluetoothConverter.getDataFromBluetoothMessage(myBluetoothHandler.receiveData());
+                    mySimulation.myCar.myInputData = myBluetoothConverter.getDataFromBluetoothMessage(myBluetoothHandler.receiveData());
                 }
 
                 await Task.Delay(refreshRate);
+
+                mySimulation.myTime += (UInt64)mySimulation.refreshRate;
             }
         }
 
@@ -104,7 +106,7 @@ namespace WeCanCSharp
                     // configuring the new page by passing required information as a navigation
                     // parameter
                     /* Passing myCar object to mainpage */
-                    rootFrame.Navigate(typeof(MainPage), myCar);
+                    rootFrame.Navigate(typeof(MainPage), mySimulation);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();

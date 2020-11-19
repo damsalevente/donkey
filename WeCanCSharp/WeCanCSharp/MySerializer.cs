@@ -12,9 +12,9 @@ namespace WeCanCSharp
 {
     class MySerializer
     {
-        XmlSerializer xmlSerializer = new XmlSerializer(typeof(MyCarConfiguration));
+        XmlSerializer xmlSerializer = new XmlSerializer(typeof(MyConfiguration));
 
-        public void mySerializerRoutine(MyCarConfiguration myCarConfiguration, string filepath)
+        public void mySerializerRoutine(MyConfiguration myConfiguration, string filepath)
         {
             using (FileStream stream = new FileStream(filepath, FileMode.Create, FileAccess.Write))
             {
@@ -22,27 +22,27 @@ namespace WeCanCSharp
 
                 StreamWriter sw = new StreamWriter(stream);
 
-                xmlSerializer.Serialize(sw, myCarConfiguration);
+                xmlSerializer.Serialize(sw, myConfiguration);
             }
         }
 
-        public MyCarConfiguration myDeserializerRoutine(string filepath)
+        public MyConfiguration myDeserializerRoutine(string filepath)
         {
-            MyCarConfiguration myCarConfiguration;
+            MyConfiguration myConfiguration;
 
             try
             {
                 using (FileStream stream = new FileStream(filepath, FileMode.Open, FileAccess.Read))
                 {
-                    myCarConfiguration = (MyCarConfiguration)xmlSerializer.Deserialize(stream);
+                    myConfiguration = (MyConfiguration)xmlSerializer.Deserialize(stream);
                 }
             }
             catch
             {
-                myCarConfiguration = null;
+                myConfiguration = null;
             }
 
-            return myCarConfiguration;
+            return myConfiguration;
         }
     }
 }

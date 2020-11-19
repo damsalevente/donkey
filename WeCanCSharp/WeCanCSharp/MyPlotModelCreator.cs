@@ -10,61 +10,65 @@ namespace WeCanCSharp
 {
     class MyPlotModelCreator
     {
-        public PlotModel createNewPlotModel()
+        public PlotModel createNewPlotModel(string plotModelTitle, string verticalAxisTitle, int minValue, int maxValue)
         {
-            var plotModel = new PlotModel();
+            PlotModel plotModel = new PlotModel();
 
             plotModel.PlotAreaBorderThickness = new OxyThickness(0.0);
 
             plotModel.PlotMargins = new OxyThickness(10);
 
+            plotModel.Title = plotModelTitle;
 
+            plotModel.Axes.Add(createVerticalAxis(verticalAxisTitle, minValue, maxValue));
 
-
-
-            var linearAxis = new LinearAxis();
-
-            linearAxis.Maximum = 1000;
-
-            linearAxis.Minimum = 0;
-
-            linearAxis.PositionAtZeroCrossing = true;
-
-            linearAxis.TickStyle = TickStyle.Crossing;
-
-            linearAxis.MajorGridlineStyle = LineStyle.Dash;
-
-            linearAxis.MinorGridlineStyle = LineStyle.Dot;
-
-            plotModel.Axes.Add(linearAxis);
-
-
-
-            var secondLinearAxis = new LinearAxis();
-
-            secondLinearAxis.Maximum = 1000;
-
-            secondLinearAxis.Minimum = 0;
-
-            secondLinearAxis.PositionAtZeroCrossing = true;
-
-            secondLinearAxis.TickStyle = TickStyle.Crossing;
-
-            secondLinearAxis.Position = AxisPosition.Bottom;
-
-            secondLinearAxis.MajorGridlineStyle = LineStyle.Dash;
-
-            secondLinearAxis.MinorGridlineStyle = LineStyle.Dot;
-
-            plotModel.Axes.Add(secondLinearAxis);
-
-            plotModel.Title = "myMotorVoltagePlotView";
-
-
-
-
+            plotModel.Axes.Add(createTimeAxis());
 
             return plotModel;
+        }
+
+        private LinearAxis createTimeAxis()
+        {
+            LinearAxis myTimeAxis = new LinearAxis();
+
+            myTimeAxis.Minimum = 0;
+
+            myTimeAxis.PositionAtZeroCrossing = true;
+
+            myTimeAxis.TickStyle = TickStyle.Crossing;
+
+            myTimeAxis.MajorGridlineStyle = LineStyle.Dash;
+
+            myTimeAxis.MinorGridlineStyle = LineStyle.Dot;
+
+            myTimeAxis.Position = AxisPosition.Bottom;
+
+            myTimeAxis.Title = "Time [ms]";
+
+            myTimeAxis.TitlePosition = 0;
+
+            return myTimeAxis;
+        }
+
+        private LinearAxis createVerticalAxis(string verticalAxisTitle, int minValue, int maxValue)
+        {
+            var myVerticalAxis = new LinearAxis();
+
+            myVerticalAxis.Maximum = maxValue;
+
+            myVerticalAxis.Minimum = minValue;
+
+            myVerticalAxis.PositionAtZeroCrossing = true;
+
+            myVerticalAxis.TickStyle = TickStyle.Crossing;
+
+            myVerticalAxis.MajorGridlineStyle = LineStyle.Dash;
+
+            myVerticalAxis.MinorGridlineStyle = LineStyle.Dot;
+
+            myVerticalAxis.Title = verticalAxisTitle;
+
+            return myVerticalAxis;
         }
     }
 }
