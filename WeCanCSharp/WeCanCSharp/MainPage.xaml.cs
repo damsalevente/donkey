@@ -36,6 +36,10 @@ namespace WeCanCSharp
         readonly FunctionSeries servoPositionFunctionSeries = new FunctionSeries();
         readonly FunctionSeries speedValueFunctionSeries = new FunctionSeries();
 
+        /* try to connect to wifi */
+        readonly MyBluetoothHandler myBluetoothHandler = new MyBluetoothHandler();
+
+       
         /* The data model */
         MySimulation mySimulation;
 
@@ -52,6 +56,8 @@ namespace WeCanCSharp
 
         public void RefreshData(object sg, PropertyChangedEventArgs name)
         {
+            /* recieve new data */
+            myBluetoothHandler.connectDevice();
             /* Add the newly received points. */
             lidarSensorFunctionSeries.Points.Add(new DataPoint(mySimulation.myTime, mySimulation.myCar.myInputData.lidarValue));
             motorVoltageFunctionSeries.Points.Add(new DataPoint(mySimulation.myTime, mySimulation.myCar.myInputData.motorVoltage));
