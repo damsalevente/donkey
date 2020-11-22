@@ -74,9 +74,7 @@ Minden szempontnál a megadott pont a maximális adható pont, részleges megold
 
 Architektúra, magas szintű koncepciók
 - [ ] 10p: MVVM architektúra (legalább 3 modell és 3 view model osztállyal) (Videóban: solution explorerben megmutatva a modell és view model osztályokat)
-- Többszálúság
-  - [ ] 8p: Task és async-await használatával. (Videóban: forráskódban kiemelve)
-  - [ ] 3p: BackgroundWorker használatával progress reporttal.
+- [ ] 8p: Többszálúság: Task és async-await használata. (Videóban: forráskódban kiemelve)
 - [ ] 10p: Entity Framework használata
 - [ ] 5p: Hálózati kommunikáció HTTP felett
   - [ ] +5p: HTTP feletti kommunikációban legalább 3 HTTP ige (get, put, delete, post stb.) használata, REST API kialakítása
@@ -108,7 +106,6 @@ További lehetőségek, amik nem részei a tananyagnak, de pontot érnek:
 - [ ] 5p: Style használata (nem része a tananyagnak) (Videóban: xaml kód) Az 5 pont saját definiált stílusra vonatkozik, ami legalább 2 propertyt beállít. Előre gyártott stílus használata 1p.
 - [ ] 5p: OpenCvSharp használata (Videóban: UI használat közben vagy forráskód részlet)
 - [ ] 3p: Statikus kódelemző használata a fejlesztés során (Videóban: az elemző visszajelzéseinek felvillantása)
-- [ ] 8p: Dependency Injection keretrendszer használata
 
 Ha nincs ötleted, hogy egy szempontot hogyan lehetne a feladatodba integrálni, tedd fel a kérdést a Teams nyilvános csatornájában és beszéljünk róla!
 
