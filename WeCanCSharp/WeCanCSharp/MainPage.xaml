@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    Height="720" Width="1280">
+    Height="1230" Width="1849" Opacity="0.505">
 
     
     <Grid Width="1280" Height="720" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0">
@@ -16,6 +16,7 @@
         <oxyPlot:PlotView x:Name="myMotorVoltagePlotView" Width="480" Height="300" Margin="20,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
         </oxyPlot:PlotView>
         
+
         <oxyPlot:PlotView x:Name="myServoPositionPlotView" Width="480" Height="300" Margin="520,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
         </oxyPlot:PlotView>
 
@@ -34,7 +35,7 @@
             </MenuBarItem>
         </MenuBar>
 
-        
+
         <!-- The lower two ellipses represents the rear wheel, the upper two represents the front wheel -->
         <!-- TODO: Data binding could be done on the upper two wheels' rotation depending on the wheel state -->
         <Canvas Width="280" Height="680" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1000,40,0,0">
@@ -52,8 +53,13 @@
             </Ellipse>
             <Ellipse Height="140" Width="40" Margin="190,490,0,0" Fill="#FFFF0000" Stroke="Black" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
             </Ellipse>
+
         </Canvas>
-        
+        <Image Name="img" HorizontalAlignment="Left" Height="445" Margin="-12,734,0,0" VerticalAlignment="Top" Width="979" Grid.RowSpan="2"/>
+        <Button Content="Button" Margin="1050,801,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+
+
 
     </Grid>
+
 </Page>

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Sockets;
+using System.Net.WebSockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.Devices.Bluetooth;
 
@@ -15,36 +17,30 @@ namespace WeCanCSharp
         public const string url= "https://192.168.1.234:8887/";
         public string urlParameters = "video";
 
-        public void connectDevice(string address="nothing")
+        public async Task connectDeviceAsync(string address="nothing")
         {
-           
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-          
-            //string mediaType = "ContentType", "multipart/x-mixed-replace;boundary =--boundarydonotcross"
-            string mediaType = "multipart/x-mixed-replace";
-            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("multipart/x-mixed-replace"));
-            //client.DefaultRequestHeaders.Add("ContentType", "multipart/x-mixed-replace;boundary =--boundarydonotcross");
-            HttpResponseMessage response = client.GetAsync(urlParameters).Result;  // Blocking call! Program will wait here until a response is received or a timeout occurs.
-           
-            if (response.IsSuccessStatusCode)
+
+            using (ClientWebSocket ws = new ClientWebSocket())
             {
-                // Parse the response body.
-                var dataObjects = response.Content.ReadAsAsync<IEnumerable<string>>().Result;  //Make sure to add a reference to System.Net.Http.Formatting.dll
-                foreach (var d in dataObjects)
+
+                try
                 {
-                    Console.WriteLine("{0}", d);
+                    CancellationTokenSource source = new CancellationTokenSource();
+                    CancellationToken token = source.Token;
+                    String datatosend = "{\"throttle\":40, \"angle\":40, \"throttle\":40, \"throttle\":40, \"throttle\":40, \"recording\":\"false\", \"drive_mode\":\"user\" }";
+                    byte[] array = Encoding.ASCII.GetBytes(datatosend);
+                    await ws.ConnectAsync(new Uri("ws://192.168.1.234:8887/wsDrive"), CancellationToken.None);
+                    await ws.SendAsync(array, 0, true, token);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error - {ex.Message}");
                 }
             }
-            else
-            {
-                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
-            }
-
             // Make any other calls using HttpClient here.
 
             // Dispose once all HttpClient calls are complete. This is not necessary if the containing object will be disposed of; for example in this case the HttpClient instance will be disposed automatically when the application terminates so the following call is superfluous.
-            client.Dispose();
+            //client.Dispose();
  
 
     }   
