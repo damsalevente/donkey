@@ -9,15 +9,15 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="426" Width="486">
 
     <Grid>
-        <TextBox HorizontalAlignment="Left" Margin="224,10,0,0" Text="{x:Bind mySimulation.myCar.myCarConfiguration.maxThrottle, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBox_OnBeforeTextChanging"/>
-        <TextBox HorizontalAlignment="Left" Margin="224,66,0,0" Text="{x:Bind mySimulation.myCar.myCarConfiguration.maxLeftSteeringPWM, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBox_OnBeforeTextChanging"/>
-        <TextBox HorizontalAlignment="Left" Margin="224,122,0,0" Text="{x:Bind mySimulation.myCar.myCarConfiguration.maxRightSteeringPWM, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBox_OnBeforeTextChanging"/>
-        <TextBox HorizontalAlignment="Left" Margin="224,178,0,0" Text="{x:Bind mySimulation.refreshRate, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBox_OnBeforeTextChanging"/>
+        <TextBox HorizontalAlignment="Left" Margin="224,10,0,0" Text="{x:Bind mySimulation.myCar.myCarConfiguration.maxThrottle, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
+        <TextBox HorizontalAlignment="Left" Margin="224,66,0,0" Text="{x:Bind mySimulation.myCar.myCarConfiguration.maxLeftSteeringPWM, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
+        <TextBox HorizontalAlignment="Left" Margin="224,122,0,0" Text="{x:Bind mySimulation.myCar.myCarConfiguration.maxRightSteeringPWM, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
+        <TextBox HorizontalAlignment="Left" Margin="224,178,0,0" Text="{x:Bind mySimulation.refreshRate, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" Text="Maximum throttle" TextWrapping="Wrap" VerticalAlignment="Top" Height="58" Width="205"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,66,0,0" Text="Maximum left steering value" TextWrapping="Wrap" VerticalAlignment="Top" Height="58" Width="205"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,122,0,0" Text="Maximum right steering value" TextWrapping="Wrap" VerticalAlignment="Top" Height="58" Width="205"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,178,0,0" Text="Refresh rate" TextWrapping="Wrap" VerticalAlignment="Top" Height="58" Width="205"/>
-        <Button Content="Save" Margin="0,286,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="Button_Click"/>
+        <Button Content="Save" Margin="0,286,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="ButtonClick"/>
         
     </Grid>
 </Page>

@@ -8,22 +8,21 @@ namespace WeCanCSharp
 {
     public class MyCar
     {
-        /* MyCar configuration */
         public MyCarConfiguration myCarConfiguration;
-        /* Input data */
+
         public MyInputData myInputData = new MyInputData();
-        
+
         public MyCar(MyCarConfiguration myCarConfiguration)
         {
             this.myCarConfiguration = myCarConfiguration;
         }
 
-        public MyCarConfiguration getMyCarConfiguration()
+        public MyCarConfiguration GetMyCarConfiguration()
         {
             return myCarConfiguration;
         }
 
-        public void setMyCarConfiguration(MyCarConfiguration myCarConfiguration)
+        public void SetMyCarConfiguration(MyCarConfiguration myCarConfiguration)
         {
             this.myCarConfiguration = myCarConfiguration;
         }
@@ -38,9 +37,9 @@ namespace WeCanCSharp
 
     public class MyInputData
     {
-        public int motorVoltage { set; get; }
-        public int servoPosition { set; get; }
-        public int lidarValue { set; get; }
-        public int speedValue { set; get; }
+        public int MotorVoltage { set; get; }
+        public int ServoPosition { set; get; }
+        public int LidarValue { set; get; }
+        public int SpeedValue { set; get; }
     }
 }

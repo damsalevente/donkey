@@ -27,10 +27,10 @@
 
         <MenuBar Background="Gray" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="1280" Height="40" Grid.RowSpan="3" Grid.ColumnSpan="2">
             <MenuBarItem Title="File">
-                <MenuFlyoutItem Text="Configuration" Click="configuration_Click"/>
-                <MenuFlyoutItem Text="About" Click="about_Click"/>
+                <MenuFlyoutItem Text="Configuration" Click="configurationClick"/>
+                <MenuFlyoutItem Text="About" Click="aboutClick"/>
                 <MenuFlyoutSeparator />
-                <MenuFlyoutItem Text="Exit" Click="exit_Click"/>
+                <MenuFlyoutItem Text="Exit" Click="exitClick"/>
             </MenuBarItem>
         </MenuBar>
 

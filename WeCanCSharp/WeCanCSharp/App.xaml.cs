@@ -24,7 +24,7 @@ namespace WeCanCSharp
     sealed partial class App : Application
     {
         /* The simulation */
-        readonly MySimulation mySimulation;
+        MySimulation mySimulation;
         
         /* TODO: I think this will be refactored. */
         MyBluetoothHandler myBluetoothHandler = new MyBluetoothHandler();
@@ -37,15 +37,6 @@ namespace WeCanCSharp
         /// </summary>
         public App()
         {
-            /* Get the configuration from .xml */
-            MyConfiguration myConfiguration = new MySerializer().myDeserializerRoutine(Config.filepath);
-            /* Check if the configuration exsists, if not, create default settings */
-            MyCarConfiguration myCarConfiguration = (myConfiguration == null) ? new MyCarConfiguration() : myConfiguration.myCarConfiguration;
-            int refreshRate = (myConfiguration == null) ? Config.defaultRefreshRate : myConfiguration.refreshRate;
-
-            /* Create the Data model */
-            mySimulation = new MySimulation(new MyCar(myCarConfiguration), refreshRate);
-
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
@@ -58,15 +49,27 @@ namespace WeCanCSharp
                 /* TODO: Everything shall be in the if statement, since no update is needed, if no device is connected. */
                 if (myBluetoothHandler.isBluetoothConnected)
                 {
-                    myBluetoothHandler.requestData();
+                    myBluetoothHandler.RequestData();
 
-                    mySimulation.myCar.myInputData = myBluetoothConverter.getDataFromBluetoothMessage(myBluetoothHandler.receiveData());
+                    mySimulation.myCar.myInputData = myBluetoothConverter.GetDataFromBluetoothMessage(myBluetoothHandler.ReceiveData());
                 }
 
-                mySimulation.myTime += (UInt64)mySimulation.refreshRate;
+                mySimulation.MyTime += (UInt64)mySimulation.RefreshRate;
 
                 await Task.Delay(refreshRate);
             }
+        }
+
+        async private void createWarning(string input)
+        {
+            ContentDialog noWifiDialog = new ContentDialog
+            {
+                Title = "Warning",
+                Content = input,
+                CloseButtonText = "Ok"
+            };
+
+            noWifiDialog.ShowAsync();
         }
 
         /// <summary>
@@ -87,9 +90,21 @@ namespace WeCanCSharp
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                /* Get the configuration from .xml */
+                MyConfiguration myConfiguration = new MySerializer().Deserialize(Config.filepath);
+
+                /* Check if the configuration exsists, if not, create default settings */
+                if (myConfiguration == null)
                 {
-                    //TODO: Load state from previously suspended application
+                    /* Create the Data model with default values. */
+                    this.mySimulation = new MySimulation(new MyCar(new MyCarConfiguration()), Config.defaultRefreshRate);
+
+                    /* Throw a warning. */
+                    createWarning("The configuration is not loaded.\nCheck '" + Config.filepath + "'!");
+                }
+                else
+                {
+                    this.mySimulation = new MySimulation(new MyCar(myConfiguration.myCarConfiguration), myConfiguration.refreshRate);
                 }
 
                 // Place the frame in the current Window
@@ -111,7 +126,7 @@ namespace WeCanCSharp
             }
 
             /* Start the cyclic refresh */
-            cyclicRefreshData(mySimulation.refreshRate);
+            cyclicRefreshData(mySimulation.RefreshRate);
         }
 
         /// <summary>

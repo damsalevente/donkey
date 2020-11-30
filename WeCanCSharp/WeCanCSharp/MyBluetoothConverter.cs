@@ -8,18 +8,15 @@ namespace WeCanCSharp
 {
     class MyBluetoothConverter
     {
-        public MyInputData getDataFromBluetoothMessage(int bluetoothInput)
+        public MyInputData GetDataFromBluetoothMessage(int bluetoothInput)
         {
             MyInputData myInputData = new MyInputData
             {
                 /* TODO: Converting takes place here... */
-                lidarValue = 0,
-
-                motorVoltage = 0,
-
-                servoPosition = 0,
-
-                speedValue = 0
+                LidarValue = 0,
+                MotorVoltage = 0,
+                ServoPosition = 0,
+                SpeedValue = 0
             };
 
             return myInputData;

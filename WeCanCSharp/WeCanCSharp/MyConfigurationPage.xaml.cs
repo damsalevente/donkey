@@ -29,24 +29,24 @@ namespace WeCanCSharp
             this.InitializeComponent();
         }
 
-        private void TextBox_OnBeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
+        private void TextBoxOnBeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
             /* Check if the entered value is number. */
             args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonClick(object sender, RoutedEventArgs e)
         {
             MySerializer mySerializer = new MySerializer();
 
             /* Create the myConfiguration object, which will be serialized */
             MyConfiguration myConfiguration = new MyConfiguration();
             myConfiguration.myCarConfiguration = mySimulation.myCar.myCarConfiguration;
-            myConfiguration.refreshRate = mySimulation.refreshRate;
+            myConfiguration.refreshRate = mySimulation.RefreshRate;
 
-            mySerializer.mySerializerRoutine(myConfiguration, Config.filepath);
+            mySerializer.Serialize(myConfiguration, Config.filepath);
 
-            mySerializer.myDeserializerRoutine(Config.filepath);
+            mySerializer.Deserialize(Config.filepath);
         }
 
         /* Get mySimulation data model. */

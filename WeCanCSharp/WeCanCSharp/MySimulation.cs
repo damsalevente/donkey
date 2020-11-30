@@ -12,7 +12,7 @@ namespace WeCanCSharp
     {
         public MyCar myCar;
 
-        public int refreshRate { get; set; }
+        public int RefreshRate { get; set; }
 
         /* TODO: Overflow protection is not implemented. Could be... */
         private UInt64 time = 0;
@@ -20,12 +20,12 @@ namespace WeCanCSharp
         public MySimulation(MyCar myCar, int refreshRate)
         {
             this.myCar = myCar;
-            this.refreshRate = refreshRate;
+            this.RefreshRate = refreshRate;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public UInt64 myTime
+        public UInt64 MyTime
         {
             get => this.time;
             set

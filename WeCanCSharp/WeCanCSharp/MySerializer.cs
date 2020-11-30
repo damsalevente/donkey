@@ -12,9 +12,9 @@ namespace WeCanCSharp
 {
     class MySerializer
     {
-        XmlSerializer xmlSerializer = new XmlSerializer(typeof(MyConfiguration));
+        readonly XmlSerializer xmlSerializer = new XmlSerializer(typeof(MyConfiguration));
 
-        public void mySerializerRoutine(MyConfiguration myConfiguration, string filepath)
+        public void Serialize(MyConfiguration myConfiguration, string filepath)
         {
             using (FileStream stream = new FileStream(filepath, FileMode.Create, FileAccess.Write))
             {
@@ -26,7 +26,7 @@ namespace WeCanCSharp
             }
         }
 
-        public MyConfiguration myDeserializerRoutine(string filepath)
+        public MyConfiguration Deserialize(string filepath)
         {
             MyConfiguration myConfiguration;
 

@@ -11,17 +11,17 @@ namespace WeCanCSharp
     {
         public bool isBluetoothConnected = false;
 
-        public void connectDevice(string address)
+        public void ConnectDevice(string address)
         { 
             
         }
 
-        public void requestData()
+        public void RequestData()
         {
             /* TODO: Send request data */
         }
 
-        public int receiveData()
+        public int ReceiveData()
         {
             /* TODO: Receive the raw data - Read out from the buffer, and return. Return value is not specified yet. */
             return 0;

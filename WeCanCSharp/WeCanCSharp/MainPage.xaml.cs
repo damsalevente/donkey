@@ -53,10 +53,10 @@ namespace WeCanCSharp
         public void RefreshData(object sg, PropertyChangedEventArgs name)
         {
             /* Add the newly received points. */
-            lidarSensorFunctionSeries.Points.Add(new DataPoint(mySimulation.myTime, mySimulation.myCar.myInputData.lidarValue));
-            motorVoltageFunctionSeries.Points.Add(new DataPoint(mySimulation.myTime, mySimulation.myCar.myInputData.motorVoltage));
-            servoPositionFunctionSeries.Points.Add(new DataPoint(mySimulation.myTime, mySimulation.myCar.myInputData.servoPosition));
-            speedValueFunctionSeries.Points.Add(new DataPoint(mySimulation.myTime, mySimulation.myCar.myInputData.speedValue));
+            lidarSensorFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.LidarValue));
+            motorVoltageFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.MotorVoltage));
+            servoPositionFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.ServoPosition));
+            speedValueFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.SpeedValue));
 
             refreshPlot();
         }
@@ -72,34 +72,34 @@ namespace WeCanCSharp
 
         private void setMyPlotModels()
         {
-            myLidarValuePlotView.Model = myPlotModelCreator.createNewPlotModel("Lidar Value", "[DEC]", 0, 1000);
+            myLidarValuePlotView.Model = myPlotModelCreator.CreateNewPlotModel("Lidar Value", "[DEC]", 0, 1000);
             myLidarValuePlotView.Model.Series.Add(lidarSensorFunctionSeries);
 
-            myMotorVoltagePlotView.Model = myPlotModelCreator.createNewPlotModel("Motor Voltage", "[V]", 0, 6);
+            myMotorVoltagePlotView.Model = myPlotModelCreator.CreateNewPlotModel("Motor Voltage", "[V]", 0, 6);
             myMotorVoltagePlotView.Model.Series.Add(motorVoltageFunctionSeries);
 
-            myServoPositionPlotView.Model = myPlotModelCreator.createNewPlotModel("Servo Position", "[DEC]", 0, 65535);
+            myServoPositionPlotView.Model = myPlotModelCreator.CreateNewPlotModel("Servo Position", "[DEC]", 0, 65535);
             myServoPositionPlotView.Model.Series.Add(servoPositionFunctionSeries);
 
-            mySpeedValuePlotView.Model = myPlotModelCreator.createNewPlotModel("Speed Value", "[m/s]", 0, 30);
+            mySpeedValuePlotView.Model = myPlotModelCreator.CreateNewPlotModel("Speed Value", "[m/s]", 0, 30);
             mySpeedValuePlotView.Model.Series.Add(speedValueFunctionSeries);
         }
 
-        private void about_Click(object sender, RoutedEventArgs e)
+        private void aboutClick(object sender, RoutedEventArgs e)
         {
             MyAboutPage myAboutPage = new MyAboutPage();
 
-            myViewCreator.createNewView(myAboutPage, null);
+            myViewCreator.CreateNewView(myAboutPage, null);
         }
 
-        private void configuration_Click(object sender, RoutedEventArgs e)
+        private void configurationClick(object sender, RoutedEventArgs e)
         {
             MyConfigurationPage myConfigurationPage = new MyConfigurationPage();
 
-            myViewCreator.createNewView(myConfigurationPage, mySimulation);
+            myViewCreator.CreateNewView(myConfigurationPage, mySimulation);
         }
 
-        private void exit_Click(object sender, RoutedEventArgs e)
+        private void exitClick(object sender, RoutedEventArgs e)
         {
             CoreApplication.Exit();
         }
