@@ -20,6 +20,11 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using MjpegProcessor;
+using System.Drawing;
+using Xamarin.Forms.Platform.UWP;
+using Windows.Storage.Streams;
+using Windows.UI.Xaml.Media.Imaging;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -35,10 +40,14 @@ namespace WeCanCSharp
         readonly FunctionSeries motorVoltageFunctionSeries = new FunctionSeries();
         readonly FunctionSeries servoPositionFunctionSeries = new FunctionSeries();
         readonly FunctionSeries speedValueFunctionSeries = new FunctionSeries();
+        /* try to connect to wifi */
+        readonly MyBluetoothHandler myBluetoothHandler = new MyBluetoothHandler();
 
+        /* Stream */
+        MjpegDecoder _mjpeg;
         /* The data model */
         MySimulation mySimulation;
-
+       
         private readonly MyViewCreator myViewCreator = new MyViewCreator();
 
         private readonly MyPlotModelCreator myPlotModelCreator = new MyPlotModelCreator();
@@ -48,10 +57,16 @@ namespace WeCanCSharp
             this.InitializeComponent();
 
             setMyPlotModels();
+            _mjpeg = new MjpegDecoder();
+
+           
+          
         }
 
         public void RefreshData(object sg, PropertyChangedEventArgs name)
         {
+            /* recieve new data */
+         
             /* Add the newly received points. */
             lidarSensorFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.LidarValue));
             motorVoltageFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.MotorVoltage));
@@ -109,8 +124,33 @@ namespace WeCanCSharp
             this.mySimulation = (MySimulation)e.Parameter;
 
             mySimulation.PropertyChanged += RefreshData;
-
+            _mjpeg.ParseStream(new Uri("http://192.168.1.234:8887/video"));
             base.OnNavigatedTo(e);
+        }
+
+        private async void Mjpeg_FrameReadyAsync(object sender, FrameReadyEventArgs e)
+        {
+
+            using (var ms = new MemoryStream(e.FrameBuffer))
+            {
+
+                var bmp = new BitmapImage();
+                await bmp.SetSourceAsync(ms.AsRandomAccessStream());
+                
+                //image is the Image control in XAML
+                img.Source = bmp;
+            }
+        }
+        /*Send steer and throttle values*/
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            await myBluetoothHandler.connectDeviceAsync(Steering.Value, Throttle.Value);
+        }
+
+        /* Start Video Streaming */
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            _mjpeg.FrameReady += Mjpeg_FrameReadyAsync;
         }
     }
 }
