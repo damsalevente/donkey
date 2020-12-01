@@ -182,10 +182,10 @@
       <Version>6.4.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
-      <Version>2.1.0</Version>
+      <Version>2.2.6</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
-      <Version>2.1.0</Version>
+      <Version>2.2.6</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -213,6 +213,15 @@
     <PackageReference Include="Xamarin.Forms">
       <Version>4.8.0.1687</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DonkeyClassLib\DonkeyClassLib.csproj">
+      <Project>{7263aa75-a549-458f-a9bc-73f17a26ad2a}</Project>
+      <Name>DonkeyClassLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

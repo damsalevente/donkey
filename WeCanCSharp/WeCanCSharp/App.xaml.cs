@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace WeCanCSharp
 {
@@ -122,7 +123,11 @@ namespace WeCanCSharp
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
-
+            /* database management */
+            using(var db = new DonkeyClassLib.DonkeyContext())
+            {
+                db.Database.Migrate();
+            }
             /* Start the cyclic refresh */
             cyclicRefreshData(mySimulation.RefreshRate);
         }

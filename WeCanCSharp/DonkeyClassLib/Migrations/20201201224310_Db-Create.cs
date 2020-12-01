@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DonkeyDBMigrations.Migrations
+namespace DonkeyClassLib.Migrations
 {
     public partial class DbCreate : Migration
     {
@@ -10,11 +10,11 @@ namespace DonkeyDBMigrations.Migrations
                 name: "Donkeys",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Angle = table.Column<double>(type: "REAL", nullable: false),
-                    Throttle = table.Column<double>(type: "REAL", nullable: false),
-                    TimeStamp = table.Column<ulong>(type: "INTEGER", nullable: false)
+                    Angle = table.Column<double>(nullable: false),
+                    Throttle = table.Column<double>(nullable: false),
+                    TimeStamp = table.Column<ulong>(nullable: false)
                 },
                 constraints: table =>
                 {

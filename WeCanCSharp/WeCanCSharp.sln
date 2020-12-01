@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeCanCSharp", "WeCanCSharp\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonkeyDBMigrations", "DonkeyDBMigrations\DonkeyDBMigrations.csproj", "{866C9517-0472-48F9-80F1-F08F4C428F10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonkeyClassLib", "DonkeyClassLib\DonkeyClassLib.csproj", "{7263AA75-A549-458F-A9BC-73F17A26AD2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,26 @@ Global
 		{866C9517-0472-48F9-80F1-F08F4C428F10}.Release|x64.Build.0 = Release|Any CPU
 		{866C9517-0472-48F9-80F1-F08F4C428F10}.Release|x86.ActiveCfg = Release|Any CPU
 		{866C9517-0472-48F9-80F1-F08F4C428F10}.Release|x86.Build.0 = Release|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Debug|ARM.Build.0 = Debug|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Debug|x64.Build.0 = Debug|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Debug|x86.Build.0 = Debug|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Release|ARM.ActiveCfg = Release|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Release|ARM.Build.0 = Release|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Release|ARM64.Build.0 = Release|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Release|x64.ActiveCfg = Release|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Release|x64.Build.0 = Release|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Release|x86.ActiveCfg = Release|Any CPU
+		{7263AA75-A549-458F-A9BC-73F17A26AD2A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
