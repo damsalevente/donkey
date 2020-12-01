@@ -1,0 +1,36 @@
+﻿<Page
+    x:Class="WeCanCSharp.MyConfigurationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WeCanCSharp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="426" Width="486">
+
+
+    <Grid>
+
+        <StackPanel Orientation="Horizontal" Background="Gray" Margin="0,0,0,390">
+            <Button x:Name="Main" Content="Main"
+                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Main"/>
+            <Button x:Name="Configuration" Content="Configuration"
+                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Configuration"/>
+            <Button x:Name="About" Content="About"
+                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="About"/>
+            <Button x:Name="Exit" Content="Exit"
+                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Exit"/>
+        </StackPanel>
+
+        <TextBox HorizontalAlignment="Left" Margin="224,66,0,0" Text="{x:Bind mySimulation.myCar.myCarConfiguration.maxThrottle, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
+        <TextBox HorizontalAlignment="Left" Margin="224,121,0,0" Text="{x:Bind mySimulation.myCar.myCarConfiguration.maxLeftSteeringPWM, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
+        <TextBox HorizontalAlignment="Left" Margin="224,178,0,0" Text="{x:Bind mySimulation.myCar.myCarConfiguration.maxRightSteeringPWM, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
+        <TextBox HorizontalAlignment="Left" Margin="224,234,0,0" Text="{x:Bind mySimulation.RefreshRate, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,82,0,0" Text="Maximum throttle" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="205"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,137,0,0" Text="Maximum left steering value" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Width="205"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,194,0,0" Text="Maximum right steering value" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="205"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,244,0,0" Text="Refresh rate" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="205"/>
+        <Button Content="Save" Margin="0,353,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="ButtonClick"/>
+
+    </Grid>
+</Page>
