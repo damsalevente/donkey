@@ -119,11 +119,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DonkeyConfig.cs" />
+    <Compile Include="DonkeyControl.cs" />
     <Compile Include="MyAboutPage.xaml.cs">
       <DependentUpon>MyAboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MyBluetoothConverter.cs" />
-    <Compile Include="MyBluetoothHandler.cs" />
+    <Compile Include="HttpConverter.cs" />
+    <Compile Include="HttpHandler.cs" />
     <Compile Include="MyCar.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
