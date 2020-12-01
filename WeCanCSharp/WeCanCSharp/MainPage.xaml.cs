@@ -59,7 +59,7 @@ namespace WeCanCSharp
             setMyPlotModels();
             _mjpeg = new MjpegDecoder();
 
-            _mjpeg.FrameReady += mjpeg_FrameReadyAsync;
+           
           
         }
 
@@ -128,7 +128,7 @@ namespace WeCanCSharp
             base.OnNavigatedTo(e);
         }
 
-        private async void mjpeg_FrameReadyAsync(object sender, FrameReadyEventArgs e)
+        private async void Mjpeg_FrameReadyAsync(object sender, FrameReadyEventArgs e)
         {
 
             using (var ms = new MemoryStream(e.FrameBuffer))
@@ -141,10 +141,16 @@ namespace WeCanCSharp
                 img.Source = bmp;
             }
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        /*Send steer and throttle values*/
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            myBluetoothHandler.connectDeviceAsync();
+            await myBluetoothHandler.connectDeviceAsync(Steering.Value, Throttle.Value);
+        }
+
+        /* Start Video Streaming */
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            _mjpeg.FrameReady += Mjpeg_FrameReadyAsync;
         }
     }
 }
