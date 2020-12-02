@@ -22,8 +22,10 @@ namespace WeCanCSharp
     /// </summary>
     public sealed partial class MyAboutPage : Page
     {
+        public MenuCommand MenuCommand;
         public MyAboutPage()
         {
+            MenuCommand = new MenuCommand();
             this.InitializeComponent();
         }
     }

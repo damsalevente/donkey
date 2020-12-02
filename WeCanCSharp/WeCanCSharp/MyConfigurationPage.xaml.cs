@@ -23,9 +23,11 @@ namespace WeCanCSharp
     public sealed partial class MyConfigurationPage : Page
     {
         public MySimulation mySimulation;
+        public MenuCommand MenuCommand;
 
         public MyConfigurationPage()
         {
+            MenuCommand = new MenuCommand(mySimulation);
             this.InitializeComponent();
         }
 

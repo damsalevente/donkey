@@ -39,12 +39,15 @@ namespace WeCanCSharp
         /* The data model */
         MySimulation mySimulation;
 
+        public MenuCommand MenuCommand;
+
         private readonly MyViewCreator myViewCreator = new MyViewCreator();
 
         private readonly MyPlotModelCreator myPlotModelCreator = new MyPlotModelCreator();
 
         public MainPage()
         {
+            MenuCommand = new MenuCommand(mySimulation);
             this.InitializeComponent();
 
             setMyPlotModels();
@@ -113,4 +116,5 @@ namespace WeCanCSharp
             base.OnNavigatedTo(e);
         }
     }
+
 }

@@ -10,12 +10,12 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     Height="720" Width="1280">
 
-    
+
     <Grid Width="1280" Height="720" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0">
 
         <oxyPlot:PlotView x:Name="myMotorVoltagePlotView" Width="480" Height="300" Margin="20,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
         </oxyPlot:PlotView>
-        
+
         <oxyPlot:PlotView x:Name="myServoPositionPlotView" Width="480" Height="300" Margin="520,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
         </oxyPlot:PlotView>
 
@@ -25,16 +25,17 @@
         <oxyPlot:PlotView x:Name="mySpeedValuePlotView" Width="480" Height="300" Margin="520,400,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
         </oxyPlot:PlotView>
 
-        <MenuBar Background="Gray" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="1280" Height="40" Grid.RowSpan="3" Grid.ColumnSpan="2">
-            <MenuBarItem Title="File">
-                <MenuFlyoutItem Text="Configuration" Click="configurationClick"/>
-                <MenuFlyoutItem Text="About" Click="aboutClick"/>
-                <MenuFlyoutSeparator />
-                <MenuFlyoutItem Text="Exit" Click="exitClick"/>
-            </MenuBarItem>
-        </MenuBar>
+        <StackPanel Orientation="Horizontal" Background="Gray" Margin="0,0,0,688">
+            <Button x:Name="Main" Content="Main"
+                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Main"/>
+            <Button x:Name="Configuration" Content="Configuration"
+                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Configuration"/>
+            <Button x:Name="About" Content="About"
+                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="About"/>
+            <Button x:Name="Exit" Content="Exit"
+                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Exit"/>
+        </StackPanel>
 
-        
         <!-- The lower two ellipses represents the rear wheel, the upper two represents the front wheel -->
         <!-- TODO: Data binding could be done on the upper two wheels' rotation depending on the wheel state -->
         <Canvas Width="280" Height="680" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1000,40,0,0">
@@ -53,7 +54,7 @@
             <Ellipse Height="140" Width="40" Margin="190,490,0,0" Fill="#FFFF0000" Stroke="Black" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
             </Ellipse>
         </Canvas>
-        
+
 
     </Grid>
 </Page>
