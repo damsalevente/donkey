@@ -15,14 +15,10 @@
         <Image Height="100" Width="100" Source="/Assets/BME_AUT.png" Margin="190,87,190,533" RenderTransformOrigin="0.583,0.283"/>
 
         <StackPanel Orientation="Horizontal" Background="Gray" Margin="0,0,0,688">
-            <Button x:Name="Main" Content="Main"
-                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Main"/>
             <Button x:Name="Configuration" Content="Configuration"
-                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Configuration"/>
+                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Configuration" Width="240"/>
             <Button x:Name="About" Content="About"
-                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="About"/>
-            <Button x:Name="Exit" Content="Exit"
-                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Exit"/>
+                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="About" Width="240"/>
         </StackPanel>
 
     </Grid>

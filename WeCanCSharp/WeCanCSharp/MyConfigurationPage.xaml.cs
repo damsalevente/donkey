@@ -24,7 +24,7 @@ namespace WeCanCSharp
     {
         public MySimulation mySimulation;
         public MenuCommand MenuCommand;
-
+        //Frame frame;
         public MyConfigurationPage()
         {
             MenuCommand = new MenuCommand(mySimulation);
@@ -57,6 +57,11 @@ namespace WeCanCSharp
             this.mySimulation = (MySimulation)e.Parameter;
 
             base.OnNavigatedTo(e);
+        }
+
+        private void Main_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

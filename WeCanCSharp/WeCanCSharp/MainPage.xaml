@@ -26,15 +26,19 @@
         </oxyPlot:PlotView>
 
         <StackPanel Orientation="Horizontal" Background="Gray" Margin="0,0,0,688">
-            <Button x:Name="Main" Content="Main"
-                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Main"/>
-            <Button x:Name="Configuration" Content="Configuration"
-                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Configuration"/>
-            <Button x:Name="About" Content="About"
-                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="About"/>
+            <Button x:Name="Menu" Content="Menu"
+                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Menu"/>
             <Button x:Name="Exit" Content="Exit"
                     Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Exit"/>
         </StackPanel>
+
+        <!--NavigationView x:Name="NavigationViewControl" >
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="A" x:Name="A" />
+                <NavigationViewItem Content="B" x:Name="B" />
+                <NavigationViewItem Content="C" x:Name="C" />
+            </NavigationView.MenuItems>
+        </-->
 
         <!-- The lower two ellipses represents the rear wheel, the upper two represents the front wheel -->
         <!-- TODO: Data binding could be done on the upper two wheels' rotation depending on the wheel state -->
