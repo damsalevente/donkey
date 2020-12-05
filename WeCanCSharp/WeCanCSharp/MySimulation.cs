@@ -6,17 +6,26 @@ namespace WeCanCSharp
 {
     public class MySimulation : INotifyPropertyChanged
     {
+        private static MySimulation instance = null;
+        
         public MyCar myCar;
 
         public int RefreshRate { get; set; }
 
-        /* TODO: Overflow protection is not implemented. Could be... */
         private UInt64 time = 0;
 
-        public MySimulation(MyCar myCar, int refreshRate)
+        private MySimulation(){}
+
+        public static MySimulation Instance
         {
-            this.myCar = myCar;
-            this.RefreshRate = refreshRate;
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new MySimulation();
+                }
+                return instance;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

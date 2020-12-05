@@ -120,7 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="BaseCommand.cs" />
-    <Compile Include="DonkeyConfig.cs" />
+    <Compile Include="DonkeyConfigViewModel.cs" />
     <Compile Include="DonkeyControl.cs" />
     <Compile Include="MenuCommand.cs" />
     <Compile Include="DonkeyViewModel.cs" />

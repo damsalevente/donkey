@@ -17,9 +17,9 @@
             <Button x:Name="About" Content="About"
                     Command="{x:Bind Mode=OneWay, Path=MenuCommand}" CommandParameter="About" Width="240"/>
         </StackPanel>
-        <TextBox HorizontalAlignment="Left" Margin="224,66,0,0" Text="{x:Bind mySimulation.myCar.myCarConfiguration.maxThrottle, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
-        <TextBox HorizontalAlignment="Left" Margin="224,121,0,0" Text="{x:Bind mySimulation.myCar.myCarConfiguration.maxLeftSteeringPWM, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
-        <TextBox HorizontalAlignment="Left" Margin="224,178,0,0" Text="{x:Bind mySimulation.myCar.myCarConfiguration.maxRightSteeringPWM, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
+        <TextBox HorizontalAlignment="Left" Margin="224,66,0,0" Text="{x:Bind DonkeyConfigViewModel.MaxThrottle, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
+        <TextBox HorizontalAlignment="Left" Margin="224,121,0,0" Text="{x:Bind DonkeyConfigViewModel.MaxLeftSteeringPWM, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
+        <TextBox HorizontalAlignment="Left" Margin="224,178,0,0" Text="{x:Bind DonkeyConfigViewModel.MaxRightSteeringPWM, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
         <TextBox HorizontalAlignment="Left" Margin="224,234,0,0" Text="{x:Bind mySimulation.RefreshRate, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,82,0,0" Text="Maximum throttle" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="205"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,137,0,0" Text="Maximum left steering value" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Width="205"/>

@@ -1,11 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace WeCanCSharp
 {
@@ -14,11 +24,11 @@ namespace WeCanCSharp
     /// </summary>
     sealed partial class App : Application
     {
-        private MySimulation mySimulation;
-
-        private HttpHandler myHttpHandler = new HttpHandler();
-
-        private HttpConverter myHttpConverter = new HttpConverter();
+        MySimulation mySimulation = MySimulation.Instance;
+      
+        HttpHandler myHttpHandler = new HttpHandler();
+        
+        HttpConverter myHttpConverter = new HttpConverter();
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -31,7 +41,6 @@ namespace WeCanCSharp
         }
 
         /* This function is an infinite loop which runs with refreshRate ms */
-
         private async void cyclicRefreshData(int refreshRate)
         {
             while (true)
@@ -39,7 +48,7 @@ namespace WeCanCSharp
                 string msg = await myHttpHandler.ReceiveDataAsync();
 
                 mySimulation.myCar.myInputData = myHttpConverter.ConvertDataFromDonkeyCarMessage(msg);
-
+               
                 mySimulation.MyTime += (UInt64)mySimulation.RefreshRate;
 
                 await Task.Delay(refreshRate);
@@ -83,14 +92,17 @@ namespace WeCanCSharp
                 if (myConfiguration == null)
                 {
                     /* Create the Data model with default values. */
-                    this.mySimulation = new MySimulation(new MyCar(new MyCarConfiguration()), Config.defaultRefreshRate);
+                    mySimulation.myCar = new MyCar(new MyCarConfiguration());
+                    mySimulation.RefreshRate = Config.defaultRefreshRate;
 
                     /* Throw a warning. */
                     createWarning("The configuration is not loaded.\nCheck '" + Config.filepath + "'!");
                 }
                 else
                 {
-                    this.mySimulation = new MySimulation(new MyCar(myConfiguration.myCarConfiguration), myConfiguration.refreshRate);
+                    /* Create the Data model with the values from the .xml file. */
+                    mySimulation.myCar = new MyCar(myConfiguration.myCarConfiguration);
+                    mySimulation.RefreshRate = myConfiguration.refreshRate;
                 }
 
                 // Place the frame in the current Window
@@ -111,7 +123,7 @@ namespace WeCanCSharp
                 Window.Current.Activate();
             }
             /* database management */
-            using (var db = new DonkeyClassLib.DonkeyContext())
+            using(var db = new DonkeyClassLib.DonkeyContext())
             {
                 db.Database.Migrate();
             }
@@ -124,7 +136,7 @@ namespace WeCanCSharp
         /// </summary>
         /// <param name="sender">The Frame which failed navigation</param>
         /// <param name="e">Details about the navigation failure</param>
-        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
