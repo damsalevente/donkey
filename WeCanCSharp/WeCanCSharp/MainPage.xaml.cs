@@ -42,7 +42,7 @@ namespace WeCanCSharp
 
         public MainPage()
         {
-            MenuCommand = new MenuCommand(mySimulation);
+          
             this.InitializeComponent();
 
             setMyPlotModels();
@@ -113,6 +113,7 @@ namespace WeCanCSharp
 
             mySimulation.PropertyChanged += RefreshData;
             this.DataContext = mySimulation.myCar.myInputData;
+            MenuCommand = new MenuCommand(mySimulation);
             base.OnNavigatedTo(e);
         }
 
