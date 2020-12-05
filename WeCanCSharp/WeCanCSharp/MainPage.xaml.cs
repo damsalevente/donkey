@@ -158,7 +158,9 @@ namespace WeCanCSharp
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             DonkeyControl dk = new DonkeyControl(Steering.Value, Throttle.Value);
-            string msg = httpConverter.ConvertDataToDonkeyCarMessage(dk);
+            mySimulation.myCar.myInputData.Angle = Steering.Value;
+            mySimulation.myCar.myInputData.Throttle = Throttle.Value;
+            string msg = httpConverter.ConvertDataToDonkeyCarMessage(mySimulation.myCar.myInputData);
             await myBluetoothHandler.SendDriveDataAsync(msg);
         }
 
