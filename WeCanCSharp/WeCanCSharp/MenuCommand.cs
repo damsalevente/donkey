@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.ApplicationModel.Core;
+using Windows.UI.Xaml.Media.Animation;
 
 namespace WeCanCSharp
 {
@@ -34,12 +35,12 @@ namespace WeCanCSharp
             if (Equals(In, "Configuration"))
             {
                 frame = Window.Current.Content as Frame;
-                frame.Navigate(typeof(MyConfigurationPage));
+                frame.Navigate(typeof(MyConfigurationPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
             }
             if (Equals(In, "About"))
             {
                 frame = Window.Current.Content as Frame;
-                frame.Navigate(typeof(MyAboutPage));
+                frame.Navigate(typeof(MyAboutPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
             }
             if (Equals(In, "Exit"))
             {
