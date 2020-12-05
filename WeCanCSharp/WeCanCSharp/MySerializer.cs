@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Xml;
+﻿using System.IO;
 using System.Xml.Serialization;
 
 namespace WeCanCSharp
 {
-    class MySerializer
+    internal class MySerializer
     {
-        readonly XmlSerializer xmlSerializer = new XmlSerializer(typeof(MyConfiguration));
+        private readonly XmlSerializer xmlSerializer = new XmlSerializer(typeof(MyConfiguration));
 
         public void Serialize(MyConfiguration myConfiguration, string filepath)
         {

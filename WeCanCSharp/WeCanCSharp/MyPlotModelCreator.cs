@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OxyPlot;
+﻿using OxyPlot;
 using OxyPlot.Axes;
 
 namespace WeCanCSharp
 {
-    class MyPlotModelCreator
+    internal class MyPlotModelCreator
     {
         public PlotModel CreateNewPlotModel(string plotModelTitle, string verticalAxisTitle, int minValue, int maxValue)
         {

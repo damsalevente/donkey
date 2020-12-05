@@ -1,31 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MjpegProcessor;
+using OxyPlot;
+using OxyPlot.Series;
+using System;
+using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.ApplicationModel.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Windows.UI.ViewManagement;
-using Windows.ApplicationModel.Core;
-using Windows.UI.Core;
-using OxyPlot;
-using OxyPlot.Axes;
-using OxyPlot.Series;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using MjpegProcessor;
-using System.Drawing;
-using Xamarin.Forms.Platform.UWP;
-using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Popups;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -37,17 +20,17 @@ namespace WeCanCSharp
     public sealed partial class MainPage : Page
     {
         /* FunctionSeries for data storage. */
-        readonly FunctionSeries lidarSensorFunctionSeries = new FunctionSeries();
-        readonly FunctionSeries motorVoltageFunctionSeries = new FunctionSeries();
-        readonly FunctionSeries servoPositionFunctionSeries = new FunctionSeries();
-        readonly FunctionSeries speedValueFunctionSeries = new FunctionSeries();
+        private readonly FunctionSeries lidarSensorFunctionSeries = new FunctionSeries();
+        private readonly FunctionSeries motorVoltageFunctionSeries = new FunctionSeries();
+        private readonly FunctionSeries servoPositionFunctionSeries = new FunctionSeries();
+        private readonly FunctionSeries speedValueFunctionSeries = new FunctionSeries();
         /* try to connect to wifi */
-        readonly HttpHandler myBluetoothHandler = new HttpHandler();
-        readonly HttpConverter httpConverter = new HttpConverter();
+        private readonly HttpHandler myBluetoothHandler = new HttpHandler();
+        private readonly HttpConverter httpConverter = new HttpConverter();
         /* Stream */
-        MjpegDecoder _mjpeg;
+        private MjpegDecoder _mjpeg;
         /* The data model */
-        MySimulation mySimulation;
+        private MySimulation mySimulation;
 
         public MenuCommand MenuCommand;
 
@@ -55,7 +38,7 @@ namespace WeCanCSharp
 
         private readonly MyPlotModelCreator myPlotModelCreator = new MyPlotModelCreator();
 
-		DonkeyControl donkeyControl = new DonkeyControl();
+        private DonkeyControl donkeyControl = new DonkeyControl();
 
         public MainPage()
         {
@@ -66,12 +49,12 @@ namespace WeCanCSharp
             _mjpeg = new MjpegDecoder();
             donkeyControl.Angle = 200;
             this.DataContext = donkeyControl;
-
         }
+
         public void RefreshData(object sg, PropertyChangedEventArgs name)
         {
             /* recieve new data */
-         
+
             /* Add the newly received points. */
             lidarSensorFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.Angle));
             motorVoltageFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.Throttle));
@@ -127,22 +110,22 @@ namespace WeCanCSharp
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.mySimulation = (MySimulation)e.Parameter;
-           
+
             mySimulation.PropertyChanged += RefreshData;
             this.DataContext = mySimulation.myCar.myInputData;
             base.OnNavigatedTo(e);
         }
-        void mjpeg_Error(object sender, MjpegProcessor.ErrorEventArgs e)
+
+        private void mjpeg_Error(object sender, MjpegProcessor.ErrorEventArgs e)
         {
             string msg = e.Message;
             _mjpeg.StopStream();
         }
+
         private async void Mjpeg_FrameReadyAsync(object sender, FrameReadyEventArgs e)
         {
-
             using (var ms = new MemoryStream(e.FrameBuffer))
             {
-
                 var bmp = new BitmapImage();
                 await bmp.SetSourceAsync(ms.AsRandomAccessStream());
                 /*
@@ -154,7 +137,9 @@ namespace WeCanCSharp
                 img.Source = bmp;
             }
         }
+
         /*Send steer and throttle values*/
+
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             DonkeyControl dk = new DonkeyControl(Steering.Value, Throttle.Value);
@@ -165,8 +150,9 @@ namespace WeCanCSharp
         }
 
         /* Start Video Stream */
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
-        { 
+        {
             _mjpeg.FrameReady += Mjpeg_FrameReadyAsync;
             _mjpeg.Error += mjpeg_Error;
             _mjpeg.ParseStream(new Uri("http://192.168.1.234:8887/video"));

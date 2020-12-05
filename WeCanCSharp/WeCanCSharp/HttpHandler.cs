@@ -7,17 +7,14 @@ using System.Threading.Tasks;
 
 namespace WeCanCSharp
 {
-    class HttpHandler
+    internal class HttpHandler
     {
-
         private static readonly Uri driveuri = new Uri("ws://192.168.1.234:8887/wsDrive");
         private static readonly Uri datauri = new Uri("http://192.168.1.234:8887/drive");
         private static HttpClient httpclient = new HttpClient();
 
-
         public async Task SendDriveDataAsync(String datatosend)
         {
-
             using (ClientWebSocket ws = new ClientWebSocket())
             {
                 try
@@ -40,7 +37,6 @@ namespace WeCanCSharp
         {
             try
             {
-
                 /* TODO ures sorok */
                 using (var response = await httpclient.GetAsync(datauri))
                 {
