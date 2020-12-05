@@ -1,26 +1,18 @@
-﻿using System.Collections.ObjectModel;
+﻿using DonkeyClassLib;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace WeCanCSharp
 {
     public class DonkeyViewModel
     {
-        public ObservableCollection<DonkeyClassLib.ModelDonkeyData> HistoricalData;
-        private DonkeyClassLib.ModelDonkeyData currentDonkey;
-
-        public DonkeyViewModel()
+        private ModelDonkeyData Donkey;
+        public string TimeStamp => $"{Donkey.TimeStamp / 1000} s ";
+        public string Angle => $"{Donkey.Angle * 120} degree";
+        public string Throttle => $"{Donkey.Throttle * 5} m/s";
+        public DonkeyViewModel(ModelDonkeyData modelDonkey)
         {
-            LoadDonkeys();
-        }
-
-        private void LoadDonkeys()
-        {
-            ObservableCollection<DonkeyClassLib.ModelDonkeyData> historicalData = new ObservableCollection<DonkeyClassLib.ModelDonkeyData>();
-            using (var db = new DonkeyClassLib.DonkeyContext())
-            {
-                db.Donkeys.ToList().ForEach(historicalData.Add);
-            }
-            HistoricalData = historicalData;
+            this.Donkey = modelDonkey;
         }
     }
 }

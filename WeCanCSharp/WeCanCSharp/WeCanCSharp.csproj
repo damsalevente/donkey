@@ -145,6 +145,7 @@
     <Compile Include="MyViewCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MySerializer.cs" />
+    <Compile Include="Throttle2BrushConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
