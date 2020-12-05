@@ -20,6 +20,12 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using MjpegProcessor;
+using System.Drawing;
+using Xamarin.Forms.Platform.UWP;
+using Windows.Storage.Streams;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Popups;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -35,7 +41,11 @@ namespace WeCanCSharp
         readonly FunctionSeries motorVoltageFunctionSeries = new FunctionSeries();
         readonly FunctionSeries servoPositionFunctionSeries = new FunctionSeries();
         readonly FunctionSeries speedValueFunctionSeries = new FunctionSeries();
-
+        /* try to connect to wifi */
+        readonly HttpHandler myBluetoothHandler = new HttpHandler();
+        readonly HttpConverter httpConverter = new HttpConverter();
+        /* Stream */
+        MjpegDecoder _mjpeg;
         /* The data model */
         MySimulation mySimulation;
 
@@ -45,21 +55,28 @@ namespace WeCanCSharp
 
         private readonly MyPlotModelCreator myPlotModelCreator = new MyPlotModelCreator();
 
+		DonkeyControl donkeyControl = new DonkeyControl();
+
         public MainPage()
         {
             MenuCommand = new MenuCommand(mySimulation);
             this.InitializeComponent();
 
             setMyPlotModels();
+			_mjpeg = new MjpegDecoder();
+            donkeyControl.Angle = 200;
+            this.DataContext = donkeyControl;
         }
 
         public void RefreshData(object sg, PropertyChangedEventArgs name)
         {
+            /* recieve new data */
+         
             /* Add the newly received points. */
-            lidarSensorFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.LidarValue));
-            motorVoltageFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.MotorVoltage));
-            servoPositionFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.ServoPosition));
-            speedValueFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.SpeedValue));
+            lidarSensorFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.Angle));
+            motorVoltageFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.Throttle));
+            servoPositionFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.Throttle));
+            speedValueFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.Angle));
 
             refreshPlot();
         }
@@ -110,10 +127,47 @@ namespace WeCanCSharp
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.mySimulation = (MySimulation)e.Parameter;
-
+           
             mySimulation.PropertyChanged += RefreshData;
-
+            this.DataContext = mySimulation.myCar.myInputData;
             base.OnNavigatedTo(e);
+        }
+        void mjpeg_Error(object sender, MjpegProcessor.ErrorEventArgs e)
+        {
+            string msg = e.Message;
+            _mjpeg.StopStream();
+        }
+        private async void Mjpeg_FrameReadyAsync(object sender, FrameReadyEventArgs e)
+        {
+
+            using (var ms = new MemoryStream(e.FrameBuffer))
+            {
+
+                var bmp = new BitmapImage();
+                await bmp.SetSourceAsync(ms.AsRandomAccessStream());
+                /*
+                using var src = new Mat("lenna.png", ImreadModes.Grayscale);
+                using var dst = new Mat();
+
+                Cv2.Canny(src, dst, 50, 200); */
+                //image is the Image control in XAML
+                img.Source = bmp;
+            }
+        }
+        /*Send steer and throttle values*/
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DonkeyControl dk = new DonkeyControl(Steering.Value, Throttle.Value);
+            string msg = httpConverter.ConvertDataToDonkeyCarMessage(dk);
+            await myBluetoothHandler.SendDriveDataAsync(msg);
+        }
+
+        /* Start Video Stream */
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        { 
+            _mjpeg.FrameReady += Mjpeg_FrameReadyAsync;
+            _mjpeg.Error += mjpeg_Error;
+            _mjpeg.ParseStream(new Uri("http://192.168.1.234:8887/video"));
         }
     }
 

@@ -10,7 +10,7 @@ namespace WeCanCSharp
     {
         public MyCarConfiguration myCarConfiguration;
 
-        public MyInputData myInputData = new MyInputData();
+        public DonkeyControl myInputData = new DonkeyControl();
 
         public MyCar(MyCarConfiguration myCarConfiguration)
         {
@@ -33,13 +33,5 @@ namespace WeCanCSharp
         public int maxThrottle;
         public int maxLeftSteeringPWM;
         public int maxRightSteeringPWM;
-    }
-
-    public class MyInputData
-    {
-        public int MotorVoltage { set; get; }
-        public int ServoPosition { set; get; }
-        public int LidarValue { set; get; }
-        public int SpeedValue { set; get; }
     }
 }

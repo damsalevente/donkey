@@ -25,11 +25,11 @@ namespace WeCanCSharp
     {
         /* The simulation */
         MySimulation mySimulation;
-        
+      
         /* TODO: I think this will be refactored. */
-        MyBluetoothHandler myBluetoothHandler = new MyBluetoothHandler();
+        HttpHandler myHttpHandler = new HttpHandler();
         /* TODO: I think this will be refactored. */
-        MyBluetoothConverter myBluetoothConverter = new MyBluetoothConverter();
+        HttpConverter myHttpConverter = new HttpConverter();
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -42,18 +42,16 @@ namespace WeCanCSharp
         }
 
         /* This function is an infinite loop which runs with refreshRate ms */
-        async private void cyclicRefreshData(int refreshRate)
+        private async void cyclicRefreshData(int refreshRate)
         {
             while (true)
             {
-                /* TODO: Everything shall be in the if statement, since no update is needed, if no device is connected. */
-                if (myBluetoothHandler.isBluetoothConnected)
-                {
-                    myBluetoothHandler.RequestData();
 
-                    mySimulation.myCar.myInputData = myBluetoothConverter.GetDataFromBluetoothMessage(myBluetoothHandler.ReceiveData());
-                }
 
+                string msg = await myHttpHandler.ReceiveDataAsync();
+
+                mySimulation.myCar.myInputData = myHttpConverter.ConvertDataFromDonkeyCarMessage(msg);
+               
                 mySimulation.MyTime += (UInt64)mySimulation.RefreshRate;
 
                 await Task.Delay(refreshRate);
@@ -69,7 +67,7 @@ namespace WeCanCSharp
                 CloseButtonText = "Ok"
             };
 
-            noWifiDialog.ShowAsync();
+            await noWifiDialog.ShowAsync();
         }
 
         /// <summary>

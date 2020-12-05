@@ -11,15 +11,12 @@
 
     <Grid>
 
-        <StackPanel Orientation="Horizontal" Background="Gray" Margin="0,0,0,688">
-            
+        <StackPanel Orientation="Horizontal" Background="Gray" Margin="0,0,0,688">    
             <Button x:Name="Configuration" Content="Configuration"
                     Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Configuration" Width="240"/>
             <Button x:Name="About" Content="About"
                     Command="{x:Bind Mode=OneWay, Path=MenuCommand}" CommandParameter="About" Width="240"/>
-
         </StackPanel>
-
         <TextBox HorizontalAlignment="Left" Margin="224,66,0,0" Text="{x:Bind mySimulation.myCar.myCarConfiguration.maxThrottle, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
         <TextBox HorizontalAlignment="Left" Margin="224,121,0,0" Text="{x:Bind mySimulation.myCar.myCarConfiguration.maxLeftSteeringPWM, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
         <TextBox HorizontalAlignment="Left" Margin="224,178,0,0" Text="{x:Bind mySimulation.myCar.myCarConfiguration.maxRightSteeringPWM, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="222" BeforeTextChanging="TextBoxOnBeforeTextChanging"/>
