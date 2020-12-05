@@ -127,7 +127,6 @@
     <Compile Include="HistoricData.xaml.cs">
       <DependentUpon>HistoricData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\ModelDonkeyData.cs" />
     <Compile Include="MyAboutPage.xaml.cs">
       <DependentUpon>MyAboutPage.xaml</DependentUpon>
     </Compile>
@@ -146,7 +145,6 @@
     <Compile Include="MyViewCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MySerializer.cs" />
-    <Compile Include="VideoData.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
