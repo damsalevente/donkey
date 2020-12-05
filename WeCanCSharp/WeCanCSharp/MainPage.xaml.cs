@@ -48,15 +48,17 @@ namespace WeCanCSharp
         MjpegDecoder _mjpeg;
         /* The data model */
         MySimulation mySimulation;
-       
+
+        public MenuCommand MenuCommand;
+
         private readonly MyViewCreator myViewCreator = new MyViewCreator();
 
         private readonly MyPlotModelCreator myPlotModelCreator = new MyPlotModelCreator();
-        /* no need? */
         DonkeyControl donkeyControl = new DonkeyControl();
 
         public MainPage()
         {
+            MenuCommand = new MenuCommand(mySimulation);
             this.InitializeComponent();
 
             setMyPlotModels();

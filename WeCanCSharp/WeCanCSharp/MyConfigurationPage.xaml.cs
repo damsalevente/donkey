@@ -23,9 +23,11 @@ namespace WeCanCSharp
     public sealed partial class MyConfigurationPage : Page
     {
         public MySimulation mySimulation;
-
+        public MenuCommand MenuCommand;
+        //Frame frame;
         public MyConfigurationPage()
         {
+            MenuCommand = new MenuCommand(mySimulation);
             this.InitializeComponent();
         }
 
@@ -55,6 +57,11 @@ namespace WeCanCSharp
             this.mySimulation = (MySimulation)e.Parameter;
 
             base.OnNavigatedTo(e);
+        }
+
+        private void Main_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

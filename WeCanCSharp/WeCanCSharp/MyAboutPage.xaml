@@ -10,10 +10,16 @@
     Height="720" Width="480">
 
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="60,148,0,0" Text="If you have any problem, please contact the developers... :)" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="364"/>
-        <TextBlock Text="Created by: Levente Dámsa, György Steinmann, Mátyás Tóth" TextWrapping="Wrap" Height="31" Margin="60,19,50,670"/>
-        <Image Height="100" Width="100" Source="/Assets/BME_AUT.png" Margin="190,43,190,577" RenderTransformOrigin="0.583,0.283"/>
+        <TextBlock HorizontalAlignment="Left" Margin="60,201,0,0" Text="If you have any problem, please contact the developers... :)" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="364"/>
+        <TextBlock Text="Created by: Levente Dámsa, György Steinmann, Mátyás Tóth" TextWrapping="Wrap" Height="31" Margin="60,55,50,634"/>
+        <Image Height="100" Width="100" Source="/Assets/BME_AUT.png" Margin="190,87,190,533" RenderTransformOrigin="0.583,0.283"/>
 
+        <StackPanel Orientation="Horizontal" Background="Gray" Margin="0,0,0,688">
+            <Button x:Name="Configuration" Content="Configuration"
+                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Configuration" Width="240"/>
+            <Button x:Name="About" Content="About"
+                    Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="About" Width="240"/>
+        </StackPanel>
 
     </Grid>
 </Page>
