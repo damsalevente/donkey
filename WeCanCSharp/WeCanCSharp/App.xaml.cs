@@ -24,10 +24,8 @@ namespace WeCanCSharp
     /// </summary>
     sealed partial class App : Application
     {
-       
-        MySimulation mySimulation;
+        MySimulation mySimulation = MySimulation.Instance;
       
-        
         HttpHandler myHttpHandler = new HttpHandler();
         
         HttpConverter myHttpConverter = new HttpConverter();
@@ -47,8 +45,6 @@ namespace WeCanCSharp
         {
             while (true)
             {
-
-
                 string msg = await myHttpHandler.ReceiveDataAsync();
 
                 mySimulation.myCar.myInputData = myHttpConverter.ConvertDataFromDonkeyCarMessage(msg);
@@ -96,14 +92,17 @@ namespace WeCanCSharp
                 if (myConfiguration == null)
                 {
                     /* Create the Data model with default values. */
-                    this.mySimulation = new MySimulation(new MyCar(new MyCarConfiguration()), Config.defaultRefreshRate);
+                    mySimulation.myCar = new MyCar(new MyCarConfiguration());
+                    mySimulation.RefreshRate = Config.defaultRefreshRate;
 
                     /* Throw a warning. */
                     createWarning("The configuration is not loaded.\nCheck '" + Config.filepath + "'!");
                 }
                 else
                 {
-                    this.mySimulation = new MySimulation(new MyCar(myConfiguration.myCarConfiguration), myConfiguration.refreshRate);
+                    /* Create the Data model with the values from the .xml file. */
+                    mySimulation.myCar = new MyCar(myConfiguration.myCarConfiguration);
+                    mySimulation.RefreshRate = myConfiguration.refreshRate;
                 }
 
                 // Place the frame in the current Window
