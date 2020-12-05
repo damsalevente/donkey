@@ -32,14 +32,6 @@
                     Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Exit"/>
         </StackPanel>
 
-        <!--NavigationView x:Name="NavigationViewControl" >
-            <NavigationView.MenuItems>
-                <NavigationViewItem Content="A" x:Name="A" />
-                <NavigationViewItem Content="B" x:Name="B" />
-                <NavigationViewItem Content="C" x:Name="C" />
-            </NavigationView.MenuItems>
-        </-->
-
         <!-- The lower two ellipses represents the rear wheel, the upper two represents the front wheel -->
         <!-- TODO: Data binding could be done on the upper two wheels' rotation depending on the wheel state -->
         <Canvas Width="280" Height="680" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1000,40,0,0">
