@@ -35,7 +35,6 @@ namespace WeCanCSharp
              * no update, only the previous runs
              */
             
-             //historicaldatalist.ItemsSource = DonkeyView.HistoricalData;
             
         }
     }

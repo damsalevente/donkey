@@ -30,6 +30,7 @@ namespace WeCanCSharp
 
     public class MyCarConfiguration
     {
+        /* PWM values */
         public int maxThrottle;
         public int maxLeftSteeringPWM;
         public int maxRightSteeringPWM;

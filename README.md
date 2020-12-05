@@ -73,39 +73,66 @@ Annak érdekében, hogy az adható visszajelzés minél hasznosabb legyen, javas
 Minden szempontnál a megadott pont a maximális adható pont, részleges megoldás kevesebb pontot is érhet. A pótleadáson maximum 50 pont szerezhető.
 
 Architektúra, magas szintű koncepciók
-- [ ] 10p: MVVM architektúra (legalább 3 modell és 3 view model osztállyal) (Videóban: solution explorerben megmutatva a modell és view model osztályokat)
+- [x] 10p: MVVM architektúra (legalább 3 modell és 3 view model osztállyal) (Videóban: solution explorerben megmutatva a modell és view model osztályokat)
+  - DonkeyModel - DonkeyViewModel - HistoricData
+  - DonkeyControl - Httpconverter - MainPage.xaml: oxyplot
+  - ConfigurationPage - 
+  - Timestamp 
+
+ 
 - Többszálúság
-  - [ ] 8p: Task és async-await használatával. (Videóban: forráskódban kiemelve)
+  - [x] 8p: Task és async-await használatával. (Videóban: forráskódban kiemelve)
+    - HttpHandler.cs
+
   - [ ] 3p: BackgroundWorker használatával progress reporttal.
-- [ ] 10p: Entity Framework használata
-- [ ] 5p: Hálózati kommunikáció HTTP felett
-  - [ ] +5p: HTTP feletti kommunikációban legalább 3 HTTP ige (get, put, delete, post stb.) használata, REST API kialakítása
+- [x] 10p: Entity Framework használata
+  - Kulon projectben initial migration
+  - model: DonkeyClassLib
+- [x] 5p: Hálózati kommunikáció HTTP felett
+  - HttpHandler.cs
+  - [x] +5p: HTTP feletti kommunikációban legalább 3 HTTP ige (get, put, delete, post stb.) használata, REST API kialakítása
+    - mainpage.xaml.cs mjpeg stream olvasasa? 
+
 
 Technológiák
-- [ ] 5p: Canvas és Shape használata (Videóban: UI-on megmutatva)
-- [ ] 5p: Adatkötés használata (Videóban: xaml kód)
+- [x] 5p: Canvas és Shape használata (Videóban: UI-on megmutatva)
+  - MainPage.xaml, auto kerekeinek kirajzolasa
+- [x] 5p: Adatkötés használata (Videóban: xaml kód)
+  - HistoricData.xaml: listview , MainPage.xaml,  throttle,steering value, szinek, oxyplot, menugombok, az osszes page-en ConfigurationPage.xaml:
 - [ ] 10p: Heterogén listához adatkötés (DataTemplateSelector) (Videóban: xaml kód)
 - [ ] 5p: Regex használat nem triviális feladatra (pl. nem Substring helyett) (Videóban: forráskód részlet)
-- [ ] 5p: IValueConverter használata (Videóban: xaml kód)
-- [ ] 5p: ICommand (Videóban: forráskódban az ICommandot implementáló osztály)
-- [ ] 5p: StaticResource használata (Videóban: xaml kód)
-- [ ] 5p: Fájlba mentés és onnan betöltés (az UWP hozzáférési korlátozásokat figyelembe véve) (Videóban: használat közben a UI vagy forráskód részlet)
+- [x] 5p: IValueConverter használata (Videóban: xaml kód)
+  - ThrottleToBruchConverter osztaly
+- [x] 5p: ICommand (Videóban: forráskódban az ICommandot implementáló osztály)
+  - BaseCommand osztaly  
+- [x] 5p: StaticResource használata (Videóban: xaml kód)
+  - About xaml 
+  - (kep a videostreamben)
+- [x] 5p: Fájlba mentés és onnan betöltés (az UWP hozzáférési korlátozásokat figyelembe véve) (Videóban: használat közben a UI vagy forráskód részlet)
+  - MyConfig osztaly: config.xml iras/betoltes
 - [ ] 5p: Linq használata nem triviális feladatra (query vagy method syntax is lehet) (Videóban: forráskódban kiemelve)
-- [ ] 5p: Sorosítás JSON vagy XML formátumba (Videóban: generált XML/JSON felvillantása)
+- [x] 5p: Sorosítás JSON vagy XML formátumba (Videóban: generált XML/JSON felvillantása)
+  - json: DonkeyControl.cs + HttpConverter.cs
+  - xml: Myserializer.cs
 - [ ] 5p: Alapos öntesztelő funkció a robot számára. A tesztet futtathatja a kliens program is, de a robot firmwareje is. A lényeg, hogy van öntesztelési funkció. (Videóban: futás közben bemutatva)
-- [ ] 10p: grafikon megjelenítő package (pl. oxyplot) használata nem csak alapbeállításokkal (Videóban: UI-on megmutatva)
+- [x] 10p: grafikon megjelenítő package (pl. oxyplot) használata nem csak alapbeállításokkal (Videóban: UI-on megmutatva)
+  - MainPage.xaml
 
 Módszertani szempontok
-- [ ] mintánként 5p: A tárgy keretében szereplő tervezési minta használata saját megvalósításban (videóban: forráskódban megmutatva). (Observer csak akkor, ha az esemény kiváltása is saját kód, pl. egy nyomógomb Click eseménykezelőjének megírása még nem elég ehhez.)
+- [x] mintánként 5p: A tárgy keretében szereplő tervezési minta használata saját megvalósításban (videóban: forráskódban megmutatva). (Observer csak akkor, ha az esemény kiváltása is saját kód, pl. egy nyomógomb Click eseménykezelőjének megírása még nem elég ehhez.)
+  - Singleton: MySimulation 
+  - template method General Car -> donkeyCar 
+  - lambda: myviewcreator  runasync line 25
 - [ ] 10p: Legalább 20% unit teszt lefedettség (Videóban: unit tesztek lefutnak és zöldek, coverage report 20% feletti számot mutat). Ha kisebb a lefedettség, arányosan kevesebb pontot ér. (UWP alkalmazásra macerás tesztet írni, a tesztelendő osztályokat egy .NET Standard 2.0 projektbe hozzátok létre és azt tudjátok hivatkozni xUnit Test projektből, ha a teszt projekt .NET Core 2.0-át céloz meg.)
 - [ ] 10p: DocFX segítségével, XML kommentárokkal generált dokumentáció legalább 3 áttekintő UML diagrammal. A dokumentáció fejlesztői dokumentáció. Olyan mértékben kell, hogy tartalmazza a rendszer működését, hogy abból kiderüljön, hogy egy adott funkció hogy működik és hol található a forráskódban. A repository értelemszerűen tartalmazza a dokumentáció minden forrását is. A DocFX által generált HTML dokumentáció ZIP-elve a github.com release funkciójával letölthető formában kell, hogy elérhető legyen a leadási pull request létrehozásakor. https://github.com/blog/1547-release-your-software 
 - [ ] 3p: Határidőre leadott pull request az 1. code reviewra, szignifikáns mennyiségű fejlesztéssel.
-- [ ] 2p: Határidőre leadott pull request a 2. code reviewra, szignifikáns mennyiségű fejlesztéssel.
+- [x] 2p: Határidőre leadott pull request a 2. code reviewra, szignifikáns mennyiségű fejlesztéssel.
 
 További lehetőségek, amik nem részei a tananyagnak, de pontot érnek:
 - [ ] 8p: Behaviour használata (nem része a tananyagnak) (Videóban: xaml kód)
-- [ ] 8p: Animációk használata (nem része a tananyagnak) (Videóban: UI használat közben vagy xaml kód)
-- [ ] 5p: Style használata (nem része a tananyagnak) (Videóban: xaml kód) Az 5 pont saját definiált stílusra vonatkozik, ami legalább 2 propertyt beállít. Előre gyártott stílus használata 1p.
+- [x] 8p: Animációk használata (nem része a tananyagnak) (Videóban: UI használat közben vagy xaml kód)
+  - menucommand.cs menuk kozti navigacio 
+- [x] 5p: Style használata (nem része a tananyagnak) (Videóban: xaml kód) Az 5 pont saját definiált stílusra vonatkozik, ami legalább 2 propertyt beállít. Előre gyártott stílus használata 1p.
 - [ ] 5p: OpenCvSharp használata (Videóban: UI használat közben vagy forráskód részlet)
 - [ ] 3p: Statikus kódelemző használata a fejlesztés során (Videóban: az elemző visszajelzéseinek felvillantása)
 - [ ] 8p: Dependency Injection keretrendszer használata

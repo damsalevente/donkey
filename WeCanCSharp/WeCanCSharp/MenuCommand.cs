@@ -46,7 +46,7 @@ namespace WeCanCSharp
             {
                 CoreApplication.Exit();
             }
-            //throw new NotImplementedException();
+           
         }
     }
 }
