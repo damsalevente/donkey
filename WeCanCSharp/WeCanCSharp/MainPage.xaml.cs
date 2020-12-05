@@ -54,7 +54,8 @@ namespace WeCanCSharp
         private readonly MyViewCreator myViewCreator = new MyViewCreator();
 
         private readonly MyPlotModelCreator myPlotModelCreator = new MyPlotModelCreator();
-        DonkeyControl donkeyControl = new DonkeyControl();
+
+		DonkeyControl donkeyControl = new DonkeyControl();
 
         public MainPage()
         {

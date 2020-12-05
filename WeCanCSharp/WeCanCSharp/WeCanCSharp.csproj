@@ -119,9 +119,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DAL\DonkeyContext.cs" />
+    <Compile Include="BaseCommand.cs" />
     <Compile Include="DonkeyConfig.cs" />
     <Compile Include="DonkeyControl.cs" />
+    <Compile Include="MenuCommand.cs" />
     <Compile Include="DonkeyViewModel.cs" />
     <Compile Include="HistoricData.xaml.cs">
       <DependentUpon>HistoricData.xaml</DependentUpon>
