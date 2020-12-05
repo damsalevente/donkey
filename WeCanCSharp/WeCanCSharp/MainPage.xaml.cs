@@ -52,7 +52,7 @@ namespace WeCanCSharp
         private readonly MyViewCreator myViewCreator = new MyViewCreator();
 
         private readonly MyPlotModelCreator myPlotModelCreator = new MyPlotModelCreator();
-
+        /* no need? */
         DonkeyControl donkeyControl = new DonkeyControl();
 
         public MainPage()
@@ -165,6 +165,13 @@ namespace WeCanCSharp
             _mjpeg.FrameReady += Mjpeg_FrameReadyAsync;
             _mjpeg.Error += mjpeg_Error;
             _mjpeg.ParseStream(new Uri("http://192.168.1.234:8887/video"));
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            HistoricData myConfigurationPage = new HistoricData();
+
+            myViewCreator.CreateNewView(myConfigurationPage, mySimulation);
         }
     }
 }

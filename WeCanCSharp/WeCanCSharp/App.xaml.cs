@@ -48,12 +48,22 @@ namespace WeCanCSharp
             while (true)
             {
 
-
                 string msg = await myHttpHandler.ReceiveDataAsync();
 
                 mySimulation.myCar.myInputData = myHttpConverter.ConvertDataFromDonkeyCarMessage(msg);
                
                 mySimulation.MyTime += (UInt64)mySimulation.RefreshRate;
+                
+                /* this should be somewhere else */
+                using(var db = new DonkeyClassLib.DonkeyContext())
+                {
+                    var modeldata = new DonkeyClassLib.ModelDonkeyData();
+                    modeldata.Angle = mySimulation.myCar.myInputData.Angle;
+                    modeldata.TimeStamp = mySimulation.MyTime;
+                    modeldata.Throttle = mySimulation.myCar.myInputData.Throttle;
+                    db.Donkeys.Add(modeldata);
+                    await db.SaveChangesAsync();
+                }
 
                 await Task.Delay(refreshRate);
             }

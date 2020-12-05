@@ -122,6 +122,10 @@
     <Compile Include="DAL\DonkeyContext.cs" />
     <Compile Include="DonkeyConfig.cs" />
     <Compile Include="DonkeyControl.cs" />
+    <Compile Include="DonkeyViewModel.cs" />
+    <Compile Include="HistoricData.xaml.cs">
+      <DependentUpon>HistoricData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\ModelDonkeyData.cs" />
     <Compile Include="MyAboutPage.xaml.cs">
       <DependentUpon>MyAboutPage.xaml</DependentUpon>
@@ -164,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="HistoricData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
