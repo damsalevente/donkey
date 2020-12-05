@@ -56,10 +56,10 @@ namespace WeCanCSharp
             /* recieve new data */
 
             /* Add the newly received points. */
-            lidarSensorFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.Angle));
-            motorVoltageFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.Throttle));
-            servoPositionFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.Throttle));
-            speedValueFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.Angle));
+            lidarSensorFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.Throttle));
+            motorVoltageFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.Voltage));
+            servoPositionFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.Angle));
+            speedValueFunctionSeries.Points.Add(new DataPoint(mySimulation.MyTime, mySimulation.myCar.myInputData.Speed));
 
             refreshPlot();
         }
@@ -75,16 +75,16 @@ namespace WeCanCSharp
 
         private void setMyPlotModels()
         {
-            myLidarValuePlotView.Model = myPlotModelCreator.CreateNewPlotModel("Lidar Value", "[DEC]", 0, 1000);
+            myLidarValuePlotView.Model = myPlotModelCreator.CreateNewPlotModel("Throttle", "%", -10, 10);
             myLidarValuePlotView.Model.Series.Add(lidarSensorFunctionSeries);
 
-            myMotorVoltagePlotView.Model = myPlotModelCreator.CreateNewPlotModel("Motor Voltage", "[V]", 0, 6);
+            myMotorVoltagePlotView.Model = myPlotModelCreator.CreateNewPlotModel("Motor Voltage", "[V]", 0, 10);
             myMotorVoltagePlotView.Model.Series.Add(motorVoltageFunctionSeries);
 
-            myServoPositionPlotView.Model = myPlotModelCreator.CreateNewPlotModel("Servo Position", "[DEC]", 0, 65535);
+            myServoPositionPlotView.Model = myPlotModelCreator.CreateNewPlotModel("Servo Position", "%", -10, 10);
             myServoPositionPlotView.Model.Series.Add(servoPositionFunctionSeries);
 
-            mySpeedValuePlotView.Model = myPlotModelCreator.CreateNewPlotModel("Speed Value", "[m/s]", 0, 30);
+            mySpeedValuePlotView.Model = myPlotModelCreator.CreateNewPlotModel("Speed Value", "[m/s]", -10, 10);
             mySpeedValuePlotView.Model.Series.Add(speedValueFunctionSeries);
         }
 
@@ -144,9 +144,11 @@ namespace WeCanCSharp
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             DonkeyControl dk = new DonkeyControl(Steering.Value, Throttle.Value);
-            mySimulation.myCar.myInputData.Angle = Steering.Value;
-            mySimulation.myCar.myInputData.Throttle = Throttle.Value;
-            string msg = httpConverter.ConvertDataToDonkeyCarMessage(mySimulation.myCar.myInputData);
+            dk.Voltage = mySimulation.myCar.myInputData.Voltage; // for confirmation
+            dk.Speed = mySimulation.myCar.myInputData.Speed;
+            dk.Angle = Steering.Value;
+            dk.Throttle = Throttle.Value;
+            string msg = httpConverter.ConvertDataToDonkeyCarMessage(dk);
             await myBluetoothHandler.SendDriveDataAsync(msg);
         }
 
