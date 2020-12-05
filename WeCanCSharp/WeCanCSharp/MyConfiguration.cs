@@ -11,7 +11,7 @@
 
     public static class Config
     {
-        public static string filepath = @"e:\config.xml";
+        public static string filepath = "config.xml";
 
         public static int defaultRefreshRate = 500;
     }
