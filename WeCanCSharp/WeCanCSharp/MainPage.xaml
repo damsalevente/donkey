@@ -8,10 +8,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    Height="720" Width="1280">
+    Height="1075" Width="1280">
 
 
-    <Grid Width="1280" Height="720" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0">
+    <Grid Width="1280" Height="1040" HorizontalAlignment="Center" VerticalAlignment="Top">
 
         <oxyPlot:PlotView x:Name="myMotorVoltagePlotView" Width="480" Height="300" Margin="20,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
         </oxyPlot:PlotView>
@@ -25,14 +25,14 @@
         <oxyPlot:PlotView x:Name="mySpeedValuePlotView" Width="480" Height="300" Margin="520,400,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
         </oxyPlot:PlotView>
 
-        <StackPanel Orientation="Horizontal" Background="Gray" Margin="0,0,0,880">
+        <StackPanel Orientation="Horizontal" Background="Gray" Margin="0,0,0,985">
             <Button x:Name="Menu" Content="Menu"
                     Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Menu" Height="35"/>
             <Button Content="Start Stream" Width="100" 
                     Click="Button_Click_1" Height="35"/>
             <Button x:Name="Exit" Content="Exit" Margin="1000,0,0,0" Background="DarkRed"
                     Command="{x:Bind MenuCommand, Mode=OneWay}" CommandParameter="Exit" Height="35" Width="124"/>
-            
+
         </StackPanel>
 
 
@@ -60,12 +60,12 @@
                 <CompositeTransform SkewY="0" TranslateY="0"/>
             </Image.RenderTransform>
         </Image>
-        <Button Content="Historical data" Margin="1050,801,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
+        <Button Content="Historical data" Margin="186,10,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
         <Slider x:Name="Steering" HorizontalAlignment="Left" Margin="310,740,0,0" VerticalAlignment="Top" Width="195" Height="45" Maximum="10" LargeChange="1" SmallChange="0.01" Minimum="-10"/>
         <Slider x:Name="Throttle" HorizontalAlignment="Left" Margin="310,801,0,0" VerticalAlignment="Top" Width="195" Height="45" Maximum="10" Minimum="-10" LargeChange="1" SmallChange="1" Value="0"/>
         <TextBox HorizontalAlignment="Left" Margin="83,792,0,0" Text="Steering" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="83,740,0,0" Text="Throttle" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Button Content="Start Stream" Margin="1140,0,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1"/>
+
         <Button Content="Send Values" Margin="83,848,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
 
