@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -26,6 +25,7 @@ namespace WeCanCSharp
              * no update, only the previous runs
              */
         }
+
         private System.Collections.Generic.List<DonkeyClassLib.ModelDonkeyData> LoadDonkeysFromDataBase()
         {
             using (var db = new DonkeyClassLib.DonkeyContext())

@@ -15,6 +15,7 @@ namespace WeCanCSharp
         public MySimulation mySimulation;
         public MenuCommand MenuCommand;
         public DonkeyConfigViewModel DonkeyConfigViewModel;
+
         //Frame frame;
         public MyConfigurationPage()
         {

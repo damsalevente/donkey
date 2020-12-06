@@ -24,12 +24,13 @@ namespace WeCanCSharp
         }
     }
 
-    public class MyCarConfiguration: INotifyPropertyChanged
+    public class MyCarConfiguration : INotifyPropertyChanged
     {
         /* PWM values */
         public int maxThrottle;
         public int maxLeftSteeringPWM;
         public int maxRightSteeringPWM;
+
         public int MaxThrottle
         {
             get

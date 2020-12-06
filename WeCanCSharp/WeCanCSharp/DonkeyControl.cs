@@ -18,10 +18,13 @@ namespace WeCanCSharp
 
         [JsonProperty("drive_mode")]
         public String Drive_mode { get; set; }
+
         [JsonProperty("voltage")]
         public double Voltage { get; set; }
+
         [JsonProperty("speed")]
         public double Speed { get; set; }
+
         public DonkeyControl()
         {
             Angle = 0;
