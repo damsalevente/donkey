@@ -37,7 +37,7 @@ namespace WeCanCSharp
         {
             try
             {
-                /* TODO ures sorok */
+               
                 using (var response = await httpclient.GetAsync(datauri))
                 {
                     var result = await response.Content.ReadAsStringAsync();

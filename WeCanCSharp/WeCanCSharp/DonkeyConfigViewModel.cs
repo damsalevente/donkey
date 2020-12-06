@@ -14,21 +14,38 @@ namespace WeCanCSharp
         {
             this.donkeyConfig = donkey;
         }
-        public int MaxLeftSteeringPWM {
+        public int MaxLeftSteeringPWM 
+        {
             get
             {
-                return donkeyConfig.maxLeftSteeringPWM * 255 / 100;
+                return (int)((double)donkeyConfig.maxLeftSteeringPWM / 255 * 100);
             }
             set
             {
-                donkeyConfig.maxLeftSteeringPWM = value * 100 / 255;
+                donkeyConfig.maxLeftSteeringPWM = (int)((double)value / 100 * 255);
             }
-            
+        }
+        public int MaxRightSteeringPWM
+        {
+            get
+            {
+                return (int)((double)donkeyConfig.maxRightSteeringPWM / 255 * 100);
             }
-        public int MaxRightSteeringPWM { get; set; }
+            set
+            {
+                donkeyConfig.maxRightSteeringPWM = (int)((double)value / 100 * 255);
+            }
+        }
         public int MaxThrottle
         {
-            get; set;
+            get
+            {
+                return (int)((double)donkeyConfig.maxThrottle / 255 * 100);
+            }
+            set
+            {
+                donkeyConfig.maxThrottle = (int)((double)value / 100 * 255);
+            }
         }
     }
 }

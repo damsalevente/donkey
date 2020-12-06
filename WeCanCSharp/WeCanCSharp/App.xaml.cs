@@ -41,14 +41,18 @@ namespace WeCanCSharp
         }
 
         /* This function is an infinite loop which runs with refreshRate ms */
-        private async void cyclicRefreshData(int refreshRate)
+        private async void cyclicRefreshData()
         {
             while (true)
             {
-                string msg = await myHttpHandler.ReceiveDataAsync();
+                mySimulation.myCar.myInputData = myHttpConverter.ConvertDataFromDonkeyCarMessage(await myHttpHandler.ReceiveDataAsync());
+            }
+        }
 
-                mySimulation.myCar.myInputData = myHttpConverter.ConvertDataFromDonkeyCarMessage(msg);
-               
+        private async void countTime(int refreshRate)
+        {
+            while (true)
+            {
                 mySimulation.MyTime += (UInt64)mySimulation.RefreshRate;
 
                 await Task.Delay(refreshRate);
@@ -127,8 +131,10 @@ namespace WeCanCSharp
             {
                 db.Database.Migrate();
             }
-            /* Start the cyclic refresh */
-            cyclicRefreshData(mySimulation.RefreshRate);
+            /* Start the cyclic methods */
+            countTime(mySimulation.RefreshRate);
+            cyclicRefreshData();
+
         }
 
         /// <summary>
@@ -151,7 +157,7 @@ namespace WeCanCSharp
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
+            
             deferral.Complete();
         }
     }

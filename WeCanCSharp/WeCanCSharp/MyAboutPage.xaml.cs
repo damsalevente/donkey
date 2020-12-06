@@ -1,4 +1,5 @@
 ﻿using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -11,10 +12,19 @@ namespace WeCanCSharp
     {
         public MenuCommand MenuCommand;
 
+        public MySimulation mySimulation;
+
         public MyAboutPage()
         {
-            MenuCommand = new MenuCommand();
+            MenuCommand = new MenuCommand(mySimulation);
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            this.mySimulation = (MySimulation)e.Parameter;
+            MenuCommand = new MenuCommand(mySimulation);
+            base.OnNavigatedTo(e);
         }
     }
 }

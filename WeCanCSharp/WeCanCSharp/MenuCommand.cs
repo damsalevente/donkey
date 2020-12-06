@@ -13,10 +13,6 @@ namespace WeCanCSharp
 
         private readonly MyViewCreator myViewCreator = new MyViewCreator();
 
-        public MenuCommand()
-        {
-        }
-
         public MenuCommand(MySimulation ms)
         {
             this.mySimulation = ms;
@@ -35,12 +31,12 @@ namespace WeCanCSharp
             if (Equals(In, "Configuration"))
             {
                 frame = Window.Current.Content as Frame;
-                frame.Navigate(typeof(MyConfigurationPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+                frame.Navigate(typeof(MyConfigurationPage), mySimulation, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
             }
             if (Equals(In, "About"))
             {
                 frame = Window.Current.Content as Frame;
-                frame.Navigate(typeof(MyAboutPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+                frame.Navigate(typeof(MyAboutPage), mySimulation, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
             }
             if (Equals(In, "Exit"))
             {
