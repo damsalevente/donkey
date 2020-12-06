@@ -25,7 +25,7 @@ namespace WeCanCSharp
         private readonly FunctionSeries servoPositionFunctionSeries = new FunctionSeries();
         private readonly FunctionSeries speedValueFunctionSeries = new FunctionSeries();
         /* try to connect to wifi */
-        private readonly HttpHandler myBluetoothHandler = new HttpHandler();
+        private readonly HttpHandler myHttpHandler = new HttpHandler();
         private readonly HttpConverter httpConverter = new HttpConverter();
         /* Stream */
         private MjpegDecoder _mjpeg;
@@ -39,7 +39,6 @@ namespace WeCanCSharp
         private readonly MyPlotModelCreator myPlotModelCreator = new MyPlotModelCreator();
 
         private DonkeyControl donkeyControl = new DonkeyControl();
-
         public MainPage()
         {
           
@@ -149,7 +148,7 @@ namespace WeCanCSharp
             dk.Angle = Steering.Value;
             dk.Throttle = Throttle.Value;
             string msg = httpConverter.ConvertDataToDonkeyCarMessage(dk);
-            await myBluetoothHandler.SendDriveDataAsync(msg);
+            await myHttpHandler.SendDriveDataAsync(msg);
         }
 
         /* Start Video Stream */
