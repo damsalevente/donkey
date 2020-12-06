@@ -1,14 +1,14 @@
 # Alkalmazásfejlesztés (VIAUMA09) házi feladat
 
 Alapadatok:
-- A csapat neve:
-- Csapattagok (név, neptun kód): aaa (abc123), bbb (def123), ccc (ghi123)
+- WeCanC#
+-  Steinmann György GWK81V, Tóth Mátyás BAVEC9, Dámsa Levente EQMJDP
 - Leadáshoz videó URL:
 
 A videó későbbi evfolyamok számára bemutatható/felhasználható videó vágásra?
-- [x] Igen, névtelenül
+- [ ] Igen, névtelenül
 - [ ] Igen, szerzőket megnevezve
-- [ ] Nem
+- [x] Nem
 
 Leadáshoz checklist:
 - 24 órával a személyes (vagy online) leadási időpont előtt 24 órával
@@ -134,6 +134,7 @@ További lehetőségek, amik nem részei a tananyagnak, de pontot érnek:
 - [x] 8p: Animációk használata (nem része a tananyagnak) (Videóban: UI használat közben vagy xaml kód)
   - menucommand.cs menuk kozti navigacio 
 - [x] 5p: Style használata (nem része a tananyagnak) (Videóban: xaml kód) Az 5 pont saját definiált stílusra vonatkozik, ami legalább 2 propertyt beállít. Előre gyártott stílus használata 1p.
+  - MainPage.xaml: stilusbeallitas 
 - [ ] 5p: OpenCvSharp használata (Videóban: UI használat közben vagy forráskód részlet)
 - [ ] 3p: Statikus kódelemző használata a fejlesztés során (Videóban: az elemző visszajelzéseinek felvillantása)
 - [ ] 8p: Dependency Injection keretrendszer használata
