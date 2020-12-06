@@ -10,8 +10,12 @@ namespace WeCanCSharp
     {
         private MySimulation mySimulation;
         private Frame frame;
-
         private readonly MyViewCreator myViewCreator = new MyViewCreator();
+
+        private WindowCreator menuNavigator = new MenuWindowCreator();
+        private WindowCreator aboutNavigator = new AboutWindowCreator();
+        private WindowCreator exitNavigator = new ExitWindowCreator();
+        private WindowCreator confNavigator = new ConfWindowCreator();
 
         public MenuCommand(MySimulation ms)
         {
@@ -25,23 +29,122 @@ namespace WeCanCSharp
 
             if (Equals(In, "Menu"))
             {
-                MyConfigurationPage myConfigurationPage = new MyConfigurationPage();
-                myViewCreator.CreateNewView(myConfigurationPage, mySimulation);
+                menuNavigator.Run(mySimulation);
             }
-            if (Equals(In, "Configuration"))
+            else if (Equals(In, "Configuration"))
             {
-                frame = Window.Current.Content as Frame;
-                frame.Navigate(typeof(MyConfigurationPage), mySimulation, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+                confNavigator.Run(mySimulation);
             }
-            if (Equals(In, "About"))
+            else if (Equals(In, "About"))
             {
-                frame = Window.Current.Content as Frame;
-                frame.Navigate(typeof(MyAboutPage), mySimulation, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+                aboutNavigator.Run(mySimulation);
             }
-            if (Equals(In, "Exit"))
+            else if (Equals(In, "Exit"))
             {
-                CoreApplication.Exit();
+                exitNavigator.Run(mySimulation);
             }
+        }
+    }
+
+    /* Abstract template class */
+
+    public abstract class WindowCreator
+    {
+        public abstract void FetchInput(MySimulation mySimulation);
+
+        public abstract void BuildNextPage();
+
+        public abstract void HandleNavigation();
+
+        /* The template method */
+
+        public void Run(MySimulation mySimulation)
+        {
+            FetchInput(mySimulation);
+            BuildNextPage();
+            HandleNavigation();
+        }
+    }
+
+    public class MenuWindowCreator : WindowCreator
+    {
+        private MySimulation menuSimulation;
+        private MyViewCreator menuViewCreator = new MyViewCreator();
+        private MyConfigurationPage menuConfigurationPage;
+
+        public override void FetchInput(MySimulation mySimulation)
+        {
+            this.menuSimulation = mySimulation;
+        }
+
+        public override void BuildNextPage()
+        {
+            menuConfigurationPage = new MyConfigurationPage();
+        }
+
+        public override void HandleNavigation()
+        {
+            menuViewCreator.CreateNewView(menuConfigurationPage, menuSimulation);
+        }
+    }
+
+    public class ConfWindowCreator : WindowCreator
+    {
+        private Frame ConfFrame;
+        private MySimulation ConfSimulation;
+
+        public override void FetchInput(MySimulation mySimulation)
+        {
+            this.ConfSimulation = mySimulation;
+        }
+
+        public override void BuildNextPage()
+        {
+            ConfFrame = Window.Current.Content as Frame;
+        }
+
+        public override void HandleNavigation()
+        {
+            ConfFrame.Navigate(typeof(MyConfigurationPage), ConfSimulation, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+        }
+    }
+
+    public class AboutWindowCreator : WindowCreator
+    {
+        private Frame AboutFrame;
+        private MySimulation AboutSimulation;
+
+        public override void FetchInput(MySimulation mySimulation)
+        {
+            this.AboutSimulation = mySimulation;
+        }
+
+        public override void BuildNextPage()
+        {
+            AboutFrame = Window.Current.Content as Frame;
+        }
+
+        public override void HandleNavigation()
+        {
+            AboutFrame.Navigate(typeof(MyAboutPage), AboutSimulation, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+        }
+    }
+
+    public class ExitWindowCreator : WindowCreator
+    {
+        public override void FetchInput(MySimulation mySimulation)
+        {
+            /* no data fetch needed */
+        }
+
+        public override void BuildNextPage()
+        {
+            /* no next page in exit */
+        }
+
+        public override void HandleNavigation()
+        {
+            CoreApplication.Exit();
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace WeCanCSharp
+﻿namespace WeCanCSharp
 {
     public class MyCar
     {
@@ -24,7 +22,7 @@ namespace WeCanCSharp
         }
     }
 
-    public class MyCarConfiguration : INotifyPropertyChanged
+    public class MyCarConfiguration
     {
         /* PWM values */
         public int maxThrottle;
@@ -42,11 +40,8 @@ namespace WeCanCSharp
                 if (this.maxThrottle != value)
                 {
                     this.maxThrottle = value;
-                    //this.OnPropertyChanged("MaxThrottle");
                 }
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
