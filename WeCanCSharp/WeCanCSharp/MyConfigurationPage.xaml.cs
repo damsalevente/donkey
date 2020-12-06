@@ -18,7 +18,6 @@ namespace WeCanCSharp
         //Frame frame;
         public MyConfigurationPage()
         {
-            
             this.InitializeComponent();
         }
 
@@ -46,9 +45,12 @@ namespace WeCanCSharp
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.mySimulation = (MySimulation)e.Parameter;
-            MenuCommand = new MenuCommand(mySimulation);
+            if (this.mySimulation == null)
+            {
+                this.mySimulation = (MySimulation)e.Parameter;
+            }
             this.DonkeyConfigViewModel = new DonkeyConfigViewModel(mySimulation.myCar.myCarConfiguration);
+            MenuCommand = new MenuCommand(mySimulation);
             base.OnNavigatedTo(e);
         }
 
