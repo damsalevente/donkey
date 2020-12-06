@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WeCanCSharp
+﻿namespace WeCanCSharp
 {
     public class DonkeyConfigViewModel
     {
-       
         public MyCarConfiguration donkeyConfig;
+
         public DonkeyConfigViewModel(MyCarConfiguration donkey)
         {
             this.donkeyConfig = donkey;
         }
-        public int MaxLeftSteeringPWM 
+
+        public int MaxLeftSteeringPWM
         {
             get
             {
@@ -25,6 +20,7 @@ namespace WeCanCSharp
                 donkeyConfig.maxLeftSteeringPWM = (int)((double)value / 100 * 255);
             }
         }
+
         public int MaxRightSteeringPWM
         {
             get
@@ -36,6 +32,7 @@ namespace WeCanCSharp
                 donkeyConfig.maxRightSteeringPWM = (int)((double)value / 100 * 255);
             }
         }
+
         public int MaxThrottle
         {
             get

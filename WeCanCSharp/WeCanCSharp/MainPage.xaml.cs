@@ -39,9 +39,9 @@ namespace WeCanCSharp
         private readonly MyPlotModelCreator myPlotModelCreator = new MyPlotModelCreator();
 
         private DonkeyControl donkeyControl = new DonkeyControl();
+
         public MainPage()
         {
-          
             this.InitializeComponent();
 
             setMyPlotModels();

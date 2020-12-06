@@ -37,7 +37,6 @@ namespace WeCanCSharp
         {
             try
             {
-               
                 using (var response = await httpclient.GetAsync(datauri))
                 {
                     var result = await response.Content.ReadAsStringAsync();

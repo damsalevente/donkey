@@ -7,14 +7,16 @@ namespace WeCanCSharp
     public class MySimulation : INotifyPropertyChanged
     {
         private static MySimulation instance = null;
-        
+
         public MyCar myCar;
 
         public int RefreshRate { get; set; }
 
         private UInt64 time = 0;
 
-        private MySimulation(){}
+        private MySimulation()
+        {
+        }
 
         public static MySimulation Instance
         {
