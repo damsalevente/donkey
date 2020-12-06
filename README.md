@@ -102,12 +102,13 @@ Technológiák
 - [ ] 10p: Heterogén listához adatkötés (DataTemplateSelector) (Videóban: xaml kód)
 - [ ] 5p: Regex használat nem triviális feladatra (pl. nem Substring helyett) (Videóban: forráskód részlet)
 - [x] 5p: IValueConverter használata (Videóban: xaml kód)
-  - ThrottleToBruchConverter osztaly
+  - ThrottleToBrush converter osztaly
+  - Steer2Angle converter osztaly 
 - [x] 5p: ICommand (Videóban: forráskódban az ICommandot implementáló osztály)
   - BaseCommand osztaly  
 - [x] 5p: StaticResource használata (Videóban: xaml kód)
-  - About xaml 
-  - (kep a videostreamben)
+  - Steering for Canvas 
+  - Throttle for Canvas 
 - [x] 5p: Fájlba mentés és onnan betöltés (az UWP hozzáférési korlátozásokat figyelembe véve) (Videóban: használat közben a UI vagy forráskód részlet)
   - MyConfig osztaly: config.xml iras/betoltes
 - [ ] 5p: Linq használata nem triviális feladatra (query vagy method syntax is lehet) (Videóban: forráskódban kiemelve)
